@@ -1,0 +1,25 @@
+beaucoup de café
+
+Interface PHP
+    - formulaire ( multiple? drag and drop pr l'ordre ?)
+    - Dézippé et creation des dossier, création de list.xml
+    - execution du xslt
+    - rezip
+
+    - formulaire ajout de odp a convertir
+    - execute xslt css
+    - execute xslt html5
+    - affichage ( redirect :) )
+
+XSLT partie 1
+    - masque model.odp
+    - contenu fusionné
+    - Picture fusionné
+    - META-INF/manifest.xml
+
+
+XSLT  partie 2
+  - générer css -> (content.xml, styles.xml -> css)
+   - générer la page html5 (content.xml -> html)
+   - utilisation timesheet
+   - affichage des animation
