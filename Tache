@@ -4,24 +4,24 @@ Interface PHP
     - formulaire ( multiple? drag and drop pr l'ordre ?)
     - Dézippé et creation des dossier, création de list.xml
     - execution du xslt
-    - rezip
+    - rezip -> proposer un download? 
 
-    - formulaire ajout de odp a convertir
+    - formulaire ajout de odp a convertir (doit marché pr 1 comme pr N)
     - execute xslt css
     - execute xslt html5
     - affichage ( redirect :) )
+    ((((((- uploader une présentation html sur un ftp))))))
+    ((((((- proposer un zip avec le dl du html??))))))
 
 XSLT partie 1
     - masque model.odp
-    - contenu fusionné
-    - Picture fusionné
-    - META-INF/manifest.xml
+    - contenu fusionné (plusieurs .odp à fusionner ou 1 seule)
+    - Picture fusionné (fusions des images contenues dans le modèle et les presentations)
+    - META-INF/manifest.xml ( a mettre à jour en fonction des != présentation)
 
 
 XSLT  partie 2
   - générer css -> (content.xml, styles.xml -> css)
    - générer la page html5 (content.xml -> html)
    - utilisation timesheet
-   - affichage des animation
-
-test
+   - affichage des animations
