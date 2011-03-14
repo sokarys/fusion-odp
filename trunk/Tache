@@ -19,9 +19,18 @@ XSLT partie 1
     - Picture fusionné (fusions des images contenues dans le modèle et les presentations)
     - META-INF/manifest.xml ( a mettre à jour en fonction des != présentation)
 
+Style à prendre en compte :
+    -> color
+    -> align
+    -> border (fixed,doted)
+    -> font-family
+    -> font-size
+    -> background-color
+    -> background-image
+
 
 XSLT  partie 2
-  - générer css -> (content.xml, styles.xml -> css)
+   - générer css -> (content.xml, styles.xml -> css)
    - générer la page html5 (content.xml -> html)
    - utilisation timesheet
    - affichage des animations
