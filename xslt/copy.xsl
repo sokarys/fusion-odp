@@ -4,12 +4,52 @@
 >
  
 <xsl:output method="xml"/>
+
 <!-- Tous les nodes -->
- <xsl:variable name="numeroPage"><xsl:value-of select="position()" /></xsl:variable>
+<xsl:template match="draw:page">
+    <xsl:param name="param"/>
+    <xsl:copy>
+        <xsl:apply-templates select="@*"/>
+        <xsl:if test="@draw:name">
+        <xsl:attribute name="draw:name">
+            <xsl:text> pages_<xsl:value-of select="position()"/><xsl:value-of select="$param"/> </xsl:text>
+        </xsl:attribute>
+        </xsl:if>
+        <xsl:apply-templates select="node()" />
+    </xsl:copy>
+
+</xsl:template>
+
+  <xsl:template match="office:presentation">
+    <xsl:copy>
+      <xsl:apply-templates  select="node() | @*"/>
+    </xsl:copy>
+  </xsl:template>
+
+   <xsl:template match="office:document-content">
+    <xsl:copy>
+      <xsl:apply-templates  select="node() | @*"/>
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="/list/doc">
+      <xsl:copy>
+    <xsl:message>J'ai trouve le doc <xsl:value-of select="@src"/></xsl:message>
+
+       
+<!--    <xsl:apply-templates  select="document(concat('tmp/',@src,'/content.xml'))/office:document-content/office:automatic-styles">
+        <xsl:with-param name="param" select="@src"> <xsl:value-of select="@src"/> </xsl:with-param>
+    </xsl:apply-templates>-->
+
+    <xsl:apply-templates  select="document(concat('tmp/',@src,'/content.xml'))/office:document-content/office:body/office:presentation/draw:page">
+        <xsl:with-param name="param" select="@src"> <xsl:value-of select="@src"/> </xsl:with-param>
+    </xsl:apply-templates>
+    </xsl:copy>
+<!--    <xsl:copy-of select="document(concat('tmp/',@src,'/content.xml'))/office:document-content/office:body/office:presentation/draw:page"/>-->
+  </xsl:template>
 
 
-
-<xsl:template match="/ | @* | node()">
+<xsl:template match=" @* | node()">
       <xsl:copy>
         <xsl:apply-templates select="@* | node()"/>
       </xsl:copy>
@@ -27,17 +67,6 @@
       </xsl:copy>
 </xsl:template>-->
 
-<xsl:template match="draw:page">
-    <xsl:copy>
-        <xsl:apply-templates select="@*"/>
-        <xsl:if test="@draw:name">
-        <xsl:attribute name="draw:name">
-            <xsl:text>page<xsl:value-of select="position() div 2" /></xsl:text>
-        </xsl:attribute>
-        </xsl:if>
-        <xsl:apply-templates select="node()" />
-    </xsl:copy>
-    
-</xsl:template>
+
        
 </xsl:stylesheet>
