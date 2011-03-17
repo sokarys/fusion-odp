@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+<automatic-styles>
+    <style name="default">
+<gras/>
+<bold/>
+</style>
+    
+        
+        
+    
+
+    <style name="style_ 1t4">
+<bold/>
+</style>
+    <style name="style_ 1t3">
+<gras/>
+</style>
+    
+</automatic-styles>
+<body>
+<presentation>
+    <page name=" pages_ 1t4"/>
+<page name=" pages_ 2t4"/>
+<page name=" pages_ 3t4"/>
+    <page name=" pages_ 1t3"/>
+<page name=" pages_ 2t3"/>
+<page name=" pages_ 3t3"/>
+    
+</presentation>
+</body>
+</document>

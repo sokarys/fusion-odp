@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<document>
+    <style  name="default">
+        <gras />
+        <bold />
+    </style>
+    <body>
+        <presentation>
+        </presentation>
+    </body>
+</document>
