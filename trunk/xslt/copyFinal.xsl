@@ -87,12 +87,26 @@
 
          <xsl:template match="text:span" mode="page">
             <xsl:param name="nomFile"/>
-           <xsl:message>sdfsdfsdfsdf<xsl:value-of select="$nomFile"/></xsl:message>
+
             <xsl:copy>
-<!--                        <xsl:copy-of select="@*"/>-->
+                    <xsl:copy-of select="@*"/>
                         <xsl:if test="@text:style-name">
                         <xsl:attribute name="text:style-name">
                             <xsl:value-of select="$nomFile"/><xsl:value-of select="@text:style-name"/>
+                        </xsl:attribute>
+                        </xsl:if>
+                        <xsl:copy-of select="node()"/>
+            </xsl:copy>
+         </xsl:template>
+
+        <xsl:template match="draw:custom-shape|draw:path" mode="page">
+            <xsl:param name="nomFile"/>
+            <xsl:copy>
+           <xsl:message><xsl:value-of select="$nomFile"/><xsl:value-of select="@draw:style-name"/></xsl:message>
+                    <xsl:copy-of select="@*"/>
+                        <xsl:if test="@draw:style-name">
+                        <xsl:attribute name="draw:style-name">
+                            <xsl:value-of select="$nomFile"/><xsl:value-of select="@draw:style-name"/>
                         </xsl:attribute>
                         </xsl:if>
                         <xsl:copy-of select="node()"/>
