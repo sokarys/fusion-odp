@@ -51,6 +51,4 @@ function chmodr($path, $filemode) {
     else
         return FALSE;
 }
-
-unzip()
 ?>
