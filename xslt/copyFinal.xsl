@@ -100,8 +100,11 @@
          </xsl:template>
 
          <xsl:template match="node()|@*" mode="style">
+             <xsl:param name="nomFile"/>
             <xsl:copy>
-                <xsl:apply-templates select="node()|@*"  mode="style"/>
+                <xsl:apply-templates select="node()|@*"  mode="style">
+                     <xsl:with-param name="nomFile"><xsl:value-of select="$nomFile"/> </xsl:with-param>
+                </xsl:apply-templates>
             </xsl:copy>
         </xsl:template>
 
