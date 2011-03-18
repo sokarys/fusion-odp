@@ -42,10 +42,10 @@
 			<xsl:copy-of select="@*"/>
                         <xsl:if test="@draw:name">
                         <xsl:attribute name="draw:name">
-                            <xsl:value-of select="@draw:name"/><xsl:value-of select="$nomFile"/>
+                            <xsl:value-of select="$nomFile"/><xsl:value-of select="@draw:name"/>
                         </xsl:attribute>
                         </xsl:if>
-			<xsl:copy-of select=".//*"/>
+			<xsl:copy-of select="node()"/>
 		</xsl:copy>
 	</xsl:template>
 
@@ -75,10 +75,10 @@
                         <xsl:if test="@style:name">
                         <xsl:attribute name="style:name">
 <!--<xsl:message><xsl:value-of select="$nomFile"/></xsl:message>-->
-                            <xsl:value-of select="@style:name"/><xsl:value-of select="$nomFile"/>
+                            <xsl:value-of select="$nomFile"/><xsl:value-of select="@style:name"/>
                         </xsl:attribute>
                         </xsl:if>
-			<xsl:copy-of select=".//*"/>
+			<xsl:copy-of select="node()"/>
 		</xsl:copy>
 <!--</xsl:if>-->
 	</xsl:template>
