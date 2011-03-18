@@ -89,7 +89,7 @@
             </xsl:copy>
         </xsl:template>
 
-       <xsl:template match="office:automatic-styles/*/node()|@*" mode="modelStyle">
+       <xsl:template match="node()|@*" mode="modelStyle">
             <xsl:copy>
                 <xsl:apply-templates select="node()|@*"  mode="modelStyle"/>
             </xsl:copy>
