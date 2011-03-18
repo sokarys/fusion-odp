@@ -32,7 +32,38 @@
         </fieldset>
         <input type="submit" name="Envoyer"/>
     </form>
-    <?php    
+    <?php
+    //upload
+    $dossier = './document/temp/';
+    print_r($_FILES);
+    $fichier = basename($_FILES['fichier']['name'][0]);
+    $extensions = array('.odp');
+    $extension = strrchr($_FILES['fichier']['name'][0], '.');
+    //Début des vérifications de sécurité...
+    if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tableau
+    {
+         $erreur = 'Vous devez uploader un fichier de type odp.';
+    }
+    if(!isset($erreur)) //S'il n'y a pas d'erreur, on upload
+    {
+         //On formate le nom du fichier ici...
+         $fichier = strtr($fichier,
+              'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ',
+              'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+         $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
+         if(move_uploaded_file($_FILES['fichier']['tmp_name'][0], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+         {
+              echo 'Upload effectué avec succès !';
+         }
+         else //Sinon (la fonction renvoie FALSE).
+         {
+              echo 'Echec de l\'upload !';
+         }
+    }
+    else
+    {
+         echo $erreur;
+    }
     if(isset($_FILES['modele']['name'])){
         echo("Votre modèle : ".$_FILES['modele']['name']);
     }
@@ -40,15 +71,22 @@
        echo("Veuillez sélectionner un modèle.");
     }
     ?>
+
+
+
+
     <form action="traitement.php" enctype="multipart/form-data" method="post">
         <ul id="sortable">
-            <li class="ui-state-default"><input type="hidden" name=document[]" value="t1"/>Item 1</li>
-            <li class="ui-state-default"><input type="hidden" name=document[]" value="t2"/>Item 2</li>
-            <li class="ui-state-default">Item 3</li>
-            <li class="ui-state-default">Item 4</li>
-            <li class="ui-state-default">Item 5</li>
-            <li class="ui-state-default">Item 6</li>
-            <li class="ui-state-default">Item 7</li>
+        <?php
+             $dirname = './document/temp';
+             $dir = opendir($dirname);
+             while($file = readdir($dir)) {
+                if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
+                {
+		echo '<li class="ui-state-default"><input type="hidden" name="document[]" value="'.$file.'"/>'.$file.'</li>';
+                }
+                }
+        ?>
         </ul>
        <input type="submit" value="Créer la présentation"/>
     </form>
