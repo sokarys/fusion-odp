@@ -45,7 +45,9 @@
                             <xsl:value-of select="$nomFile"/><xsl:value-of select="@draw:name"/>
                         </xsl:attribute>
                         </xsl:if>
-			<xsl:copy-of select="node()"/>
+			<xsl:apply-templates select="node()" mode="page">
+                             <xsl:with-param name="nomFile"><xsl:value-of select="$nomFile"/> </xsl:with-param>
+                        </xsl:apply-templates>
 		</xsl:copy>
 	</xsl:template>
 
@@ -57,7 +59,7 @@
                 <xsl:apply-templates select="@*" mode="style">
                     <xsl:with-param name="nomFile"><xsl:value-of select="$nomFile"/> </xsl:with-param>
                 </xsl:apply-templates>
-                <xsl:apply-templates select=".//*" mode="style">
+                <xsl:apply-templates select="node()" mode="style">
                     <xsl:with-param name="nomFile"><xsl:value-of select="$nomFile"/> </xsl:with-param>
                 </xsl:apply-templates>
 	</xsl:template>
@@ -83,6 +85,20 @@
 <!--</xsl:if>-->
 	</xsl:template>
 
+         <xsl:template match="text:span" mode="page">
+            <xsl:param name="nomFile"/>
+           <xsl:message>sdfsdfsdfsdf<xsl:value-of select="$nomFile"/></xsl:message>
+            <xsl:copy>
+<!--                        <xsl:copy-of select="@*"/>-->
+                        <xsl:if test="@text:style-name">
+                        <xsl:attribute name="text:style-name">
+                            <xsl:value-of select="$nomFile"/><xsl:value-of select="@text:style-name"/>
+                        </xsl:attribute>
+                        </xsl:if>
+                        <xsl:copy-of select="node()"/>
+            </xsl:copy>
+         </xsl:template>
+
          <xsl:template match="node()|@*" mode="style">
             <xsl:copy>
                 <xsl:apply-templates select="node()|@*"  mode="style"/>
@@ -96,8 +112,11 @@
         </xsl:template>
         
         <xsl:template match="node()|@*" mode="page">
+            <xsl:param name="nomFile"/>
             <xsl:copy>
-                <xsl:apply-templates select="node()|@*"  mode="page"/>
+                <xsl:apply-templates select="node()|@*"  mode="page">
+                    <xsl:with-param name="nomFile"><xsl:value-of select="$nomFile"/> </xsl:with-param>
+                </xsl:apply-templates>
             </xsl:copy>
         </xsl:template>
        
