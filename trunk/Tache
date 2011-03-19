@@ -36,3 +36,9 @@ XSLT  partie 2
    - utilisation timesheet
    - affichage des animations
 
+
+
+
+MODIFICATION A FAIRE :
+-> ds le xsl => gérer tous les types (draw:shape, draw:custom..., etc). Il faut donc les rajouter
+-> regarder lors de l'ajout de videos ou autre, comment faire en sorte que ce la marche, (lien relatif et non absolu)
