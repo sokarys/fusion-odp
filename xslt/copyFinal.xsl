@@ -31,10 +31,6 @@
             </xsl:apply-templates>
 	</xsl:template>
 
-<!--        <xsl:template match="list/doc" mode="modelStyle">
-            <xsl:apply-templates  select="document(concat('tmp/','model','/content.xml'))/document/style" mode="modelStyle"/>
-	</xsl:template>-->
-
     <!--Permet à xsl, de copier le contenu d'une page en modifiant des attribut-->
 	<xsl:template match="draw:page">
              <xsl:param name="nomFile"/>
@@ -54,8 +50,6 @@
         <!--Permet à xsl, de copier le contenu d'un style d'un content.xml en modifiant des attribut-->
         <xsl:template match="office:automatic-styles" mode="style">
             <xsl:param name="nomFile"/>
-<!--<xsl:message><xsl:value-of select="current()/style:style/@style:name"/></xsl:message>-->
-          
                 <xsl:apply-templates select="@*" mode="style">
                     <xsl:with-param name="nomFile"><xsl:value-of select="$nomFile"/> </xsl:with-param>
                 </xsl:apply-templates>
@@ -63,28 +57,27 @@
                     <xsl:with-param name="nomFile"><xsl:value-of select="$nomFile"/> </xsl:with-param>
                 </xsl:apply-templates>
 	</xsl:template>
-        
+
+        <!--Pour copier le style du model        -->
         <xsl:template match="office:automatic-styles" mode="modelStyle">
             <xsl:copy-of select="node()"/>
 	</xsl:template>
 
+        <!--Pour prendre en compte le style des présentation et renomé le style, pour les customs.-->
         <xsl:template match="style:style" mode="style" >
              <xsl:param name="nomFile"/>
-<!--<xsl:message><xsl:value-of select="@style:name"/> != <xsl:value-of select="document(copyFinal.xml)/*"/></xsl:message>-->
-<!--<xsl:if test="//node()/style:style[@style:name != curent/@style:name]">-->
              <xsl:copy>
 			<xsl:copy-of select="@*"/>
                         <xsl:if test="@style:name">
                         <xsl:attribute name="style:name">
-<!--<xsl:message><xsl:value-of select="$nomFile"/></xsl:message>-->
                             <xsl:value-of select="$nomFile"/><xsl:value-of select="@style:name"/>
                         </xsl:attribute>
                         </xsl:if>
 			<xsl:copy-of select="node()"/>
 		</xsl:copy>
-<!--</xsl:if>-->
 	</xsl:template>
 
+        <!--Pour garder les styles personnalisé d'un texte d'une présentation-->
          <xsl:template match="text:span" mode="page">
             <xsl:param name="nomFile"/>
 
@@ -99,7 +92,8 @@
             </xsl:copy>
          </xsl:template>
 
-        <xsl:template match="draw:custom-shape|draw:path" mode="page">
+        <!--Pour prendre en charge les figures, garde les styles de la présentation et non du model.-->
+        <xsl:template match="draw:custom-shape|draw:path|draw:line|draw:ellipse|draw:rect" mode="page">
             <xsl:param name="nomFile"/>
             <xsl:copy>
            <xsl:message><xsl:value-of select="$nomFile"/><xsl:value-of select="@draw:style-name"/></xsl:message>
@@ -113,6 +107,8 @@
             </xsl:copy>
          </xsl:template>
 
+
+        <!--Pour copier tous les nodes fils des != mode-->
           <xsl:template match="node()|@*" mode="style">
              <xsl:param name="nomFile"/>
             <xsl:copy>
