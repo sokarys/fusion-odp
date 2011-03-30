@@ -8,47 +8,48 @@ function zip(){
     $urlDirTarget = "./../document/final";
     $finalName = "resulat".time().".odp";
 
-    # Parcours du répertoire courant à la recherche des fichiers php qui constitueront la liste des fichiers à zipper
-    $repertoire = $urlDirSource;
-    $fichiers = array();
-    $dir = opendir($repertoire);
-    while (($file = readdir($dir)) !== FALSE) {
-        echo($file);
-        if ($file == '.' or $file == '..' or $file == '.svn') {
-            echo(" NOK"."<br/>");
-            continue;
-        }
-        if (preg_match('/\.php[45]?$/', $file)) {
-            echo(" OK"."<br/>");
-            $fichiers[] = $file;
-        }
-        echo("<br/>");
+    $zip = new ZipArchive();
+    if ($zip->open($urlDirTarget."/".$finalName, ZipArchive::OVERWRITE) !== TRUE) {
+        die("Impossible de créer l'archive");
     }
-    closedir($dir);
-
-    creer_archive($urlDirTarget."/".$finalName, $fichiers, "")
-        or die("Echec lors de la création de l'archive");
+    zip_recursif( $urlDirSource, $zip);
+    echo($urlDirTarget."/".$finalName);
+    $zip->close();
 }
 
-function creer_archive($nom, $fichiers, $commentaire = '')
+function zip_recursif($chemin, $zip, $prefixe = '')
 {
-    if (is_array($fichiers)) {
-        $zip = new ZipArchive();
-        if ($zip->open($nom, ZIPARCHIVE::OVERWRITE) !== TRUE) {
-            return FALSE;
-        }
-        foreach ($fichiers as $k => $f) {
-            if (!$zip->addFile($f)) {
+    if (substr($chemin, -1, 1) != DIRECTORY_SEPARATOR) {
+        $chemin .= DIRECTORY_SEPARATOR;
+    }
+    if (file_exists($chemin)) {
+        if (is_dir($chemin)) {
+            if (!($dh = opendir($chemin))) {
                 return FALSE;
             }
-            if (is_string($k)) {
-                $zip->setCommentName($f, $k);
+            while (($fichier = readdir($dh)) !== FALSE) {
+                if ($fichier == '.' || $fichier == '..') {
+                    continue;
+                }
+                if (is_dir($chemin . $fichier)) {
+                    $zip->addEmptyDir($prefixe . $fichier);
+                    if (!zip_recursif($chemin . $fichier . DIRECTORY_SEPARATOR, $zip, $prefixe . $fichier . DIRECTORY_SEPARATOR)) {
+                        return FALSE;
+                    }
+                } else {
+                    if (!$zip->addFile($chemin . $fichier, $prefixe . $fichier)) {
+                        return FALSE;
+                    }
+                }
             }
+            closedir($dh);
+            return TRUE;
+        } else {
+            if (!$zip->addFile($chemin)) {
+                return FALSE;
+            }
+            return TRUE;
         }
-        if ($commentaire) {
-            $zip->setArchiveComment($commentaire);
-        }
-        return $zip->close();
     }
     return FALSE;
 }
