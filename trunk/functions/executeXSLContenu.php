@@ -1,5 +1,8 @@
 <?php
 function executeXSLContenu(){
+    echo "***********************************************<br/>";
+    echo " EXECUTEXSLCONTENU<br/>";
+    echo "***********************************************<br/>";
 
     $urlSource = "./../xslt/list.xml";
     $urlXSL = "./../xslt/copyFinal.xsl";
