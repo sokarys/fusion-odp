@@ -6,9 +6,9 @@ include('./../functions/executeXSLContenu.php');
 include('./../functions/recursiveCopy.php');
 include('./../functions/picturesCopy.php');
 
-//unzip();
-//smartCopy('./../xslt/tmp/model', './../document/resultat');
-//picturesCopy();
-//executeXSLContenu();
+unzip();
+smartCopy('./../xslt/tmp/model', './../document/resultat');
+picturesCopy();
+executeXSLContenu();
 zip();
 ?>
