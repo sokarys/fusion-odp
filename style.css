@@ -1,0 +1,21 @@
+/* 
+    Document   : style.css
+    Created on : 30 mars 2011, 10:48:44
+    Author     : Michael
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+.block_fichier{
+    -moz-border-radius: 4px 4px 4px 4px;
+    padding:10px;
+}
+
