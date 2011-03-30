@@ -1,5 +1,8 @@
 <?php
 function unzip(){
+    echo "***********************************************<br/>";
+    echo " UNZIP<br/>";
+    echo "***********************************************<br/>";
     $urlDirSource = "./../document/temp/";
     $urlDirTarget = "./../xslt/tmp/";
 
