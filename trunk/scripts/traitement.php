@@ -12,8 +12,9 @@ if(isset($_POST)){
     $dom->appendChild($node);
     foreach($_POST['document'] as $valeur)
     {
+        $valeur_fin = str_replace(".odp","",$valeur);
         $nodeDoc=$dom->createElement("doc");
-        $nodeDoc->setAttribute("src", $valeur);
+        $nodeDoc->setAttribute("src", $valeur_fin);
         $node->appendChild($nodeDoc);
     }
     $dom->save('./xslt/list.xml');
@@ -33,6 +34,7 @@ if(isset($_POST)){
     smartCopy('./../xslt/tmp/model', './../document/resultat');
     picturesCopy();
     executeXSLContenu();
+    zip();
 }else{
    echo("Cette page n'est pas accessible !!!");
 }
