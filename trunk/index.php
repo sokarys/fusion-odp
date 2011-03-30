@@ -1,11 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
     <title>Compilez vos présentations OPD</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="./jquery/jquery-upload/jquery.fileupload-ui.css"/>
     <script src="./jquery/js/jquery-1.4.2.min.js"></script>
     <script src="./jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
+    
     <style>
 	#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
 	#sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
@@ -23,6 +24,34 @@
 
 </head>
 <body>
+    <form id="file_upload" action="index.php" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" multiple/>
+    <button>Upload</button>
+    <div>Upload files</div>
+    </form>
+    <table id="files"></table>
+        <script src="./jquery/jquery-upload/jquery.fileupload.js"></script>
+        <script src="./jquery/jquery-upload/jquery.fileupload-ui.js"></script>
+        <script>
+        /*global $ */
+        $(function () {
+            $('#file_upload').fileUploadUI({
+                uploadTable: $('#files'),
+                downloadTable: $('#files'),
+                buildUploadRow: function (files, index) {
+                    return $('<tr><td>' + files[index].name + '<\/td>' +
+                            '<td class="file_upload_progress"><div><\/div><\/td>' +
+                            '<td class="file_upload_cancel">' +
+                            '<button class="ui-state-default ui-corner-all" title="Cancel">' +
+                            '<span class="ui-icon ui-icon-cancel">Cancel<\/span>' +
+                            '<\/button><\/td><\/tr>');
+                },
+                buildDownloadRow: function (file) {
+                    return $('<tr><td>' + file.name + '<\/td><\/tr>');
+                }
+            });
+        });
+        </script>
     <form action="index.php" enctype="multipart/form-data" method="post">
         <fieldset>
             <caption>Modèle à appliquer à votre présentation</caption>
