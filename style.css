@@ -17,5 +17,12 @@ root {
 .block_fichier{
     -moz-border-radius: 4px 4px 4px 4px;
     padding:10px;
+    margin: 20px;
+    
+}
+#ul_modele li{
+    list-style-type: none;
+    padding: 5px;
+    font-size: 1.2em;
 }
 
