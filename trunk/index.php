@@ -104,7 +104,7 @@
 
 
 
-    <form action="traitement.php" enctype="multipart/form-data" method="post">
+    <form action="./scripts/traitement.php" enctype="multipart/form-data" method="post">
 
         <div class="block_fichier ui-widget-header">
             <ul id="ul_modele">
