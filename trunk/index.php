@@ -27,7 +27,7 @@
 <body>
     <form action="index.php" enctype="multipart/form-data" method="post">
         <fieldset>
-            <caption>Modèle à appliquer à votre présentation</caption>
+            <caption>Model à appliquer à votre présentation</caption>
             <input name="modele[]" type="file" size="50" maxlength="100000" accept="text/*"/><br/>
             <caption>Vos présentations à fusionner</caption>
             <input name="fichier[]" type="file" size="50" maxlength="100000" accept="text/*"/>

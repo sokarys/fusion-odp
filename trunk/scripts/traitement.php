@@ -18,6 +18,17 @@ if(isset($_POST)){
     }
     $dom->save('./xslt/list.xml');
 
+    //renamme et deplacement de model
+        $dirname = '../document/temp_model';
+         $dir = opendir($dirname);
+         while($file = readdir($dir)) {
+            if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
+            {
+            rename($dirname.$file, "../temp/.$file");
+            }
+         }
+
+    rename("./document", "/home/user/login/docs/my_file.txt");
     unzip();
     smartCopy('./../xslt/tmp/model', './../document/resultat');
     picturesCopy();
