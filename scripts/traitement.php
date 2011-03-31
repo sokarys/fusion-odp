@@ -17,24 +17,24 @@ if(isset($_POST)){
         $nodeDoc->setAttribute("src", $valeur_fin);
         $node->appendChild($nodeDoc);
     }
-    $dom->save('./xslt/list.xml');
+    $dom->save('../xslt/list.xml');
 
     //renamme et deplacement de model
-        $dirname = '../document/temp_model';
+        $dirname = '../document/temp_model/';
          $dir = opendir($dirname);
          while($file = readdir($dir)) {
             if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
             {
-            rename($dirname.$file, "../temp/.$file");
+            rename($dirname.$file, $dirname."model.odp");
+            copy ($dirname.$file,"../document/temp/model.odp");
+            unlink($dirname.$file);
             }
          }
-
-    rename("./document", "/home/user/login/docs/my_file.txt");
-    unzip();
-    smartCopy('./../xslt/tmp/model', './../document/resultat');
-    picturesCopy();
-    executeXSLContenu();
-    zip();
+        unzip();
+        smartCopy('./../xslt/tmp/model', './../document/resultat');
+        picturesCopy();
+        executeXSLContenu();
+        zip();
 }else{
    echo("Cette page n'est pas accessible !!!");
 }
