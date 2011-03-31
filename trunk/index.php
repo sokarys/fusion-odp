@@ -114,7 +114,7 @@
                  while($file = readdir($dir)) {
                     if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
                     {
-                    echo '<li class="ui-state-default"><input type="hidden" name="document[]" value="'.$file.'"/>'.$file.'</li>';
+                    echo '<li class="ui-state-default"><input type="hidden" name="modele[]" value="'.$file.'"/>'.$file.'</li>';
                     }
                     }
             ?>
