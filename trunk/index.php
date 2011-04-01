@@ -20,8 +20,50 @@
 			placeholder: "ui-state-highlight"
 		});
 		$( "#sortable" ).disableSelection();
+	
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+	
+		$( "#dialog-confirm" ).dialog({
+                        autoOpen: false,
+			resizable: false,
+			height:140,
+			modal: true,
+			buttons: {
+				"ODP": function() {
+					$( this ).dialog( "close" );
+                                        document.formList.submit();
+				},
+                                "HTML5": function() {
+					$( this ).dialog( "close" );
+				},
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+                $( "#dialog-message, #dialog-message2" ).dialog({
+                        autoOpen: false,
+			modal: true,
+			buttons: {
+				Ok: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+
 	});
-	</script>
+        function openDialogue(){
+        var contenu = $.trim($("#ul_modele").html());
+        var contenu2 = $.trim($("#sortable").html());
+            if(contenu == "")
+                $("#dialog-message").dialog('open');
+            else if(contenu2 == "")
+                $("#dialog-message2").dialog('open');
+            else
+                $("#dialog-confirm").dialog('open');
+
+        }
+        </script>
 
 </head>
 <body>
@@ -104,7 +146,7 @@
 
 
 
-    <form action="./scripts/traitement.php" enctype="multipart/form-data" method="post">
+    <form name="formList" action="./scripts/traitement.php" enctype="multipart/form-data" method="post">
 
         <div class="block_fichier ui-widget-header">
             <ul id="ul_modele">
@@ -135,7 +177,28 @@
             ?>
         </ul>
         </div>
-       <input type="submit" value="Créer la présentation"/>
+        
+       <input type="button" value="Créer la présentation" onclick="javascript:openDialogue();"/>
     </form>
+
+<div id="dialog-confirm" title="Quel format voulez-vous ?">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>These items will be permanently deleted and cannot be recovered. Are you sure?</p>
+</div>
+<div id="dialog-message" title="Fichiers manquants">
+	<p>
+		<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+		Le modèle de votre présentation est manquant. Veuillez le rajouter.
+	</p>
+
+</div>
+    <div id="dialog-message2" title="Fichiers manquants">
+	<p>
+		<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+		Vous avez oublié votre présentation. Veuillez la rajouter.
+	</p>
+
+</div>
+
+
 </body>
 </html>
