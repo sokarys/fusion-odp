@@ -79,6 +79,7 @@
     <?php
     //upload
     if(isset($_FILES['fichier'])){
+    include('./functions/deleteODPFIle.php');
         if($_FILES['fichier']['name'][0] !=""){
             $dossier = './document/temp/';
             $fichier = basename($_FILES['fichier']['name'][0]);
@@ -156,7 +157,7 @@
                  while($file = readdir($dir)) {
                     if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
                     {
-                    echo '<li class="ui-state-default"><input type="hidden" name="modele[]" value="'.$file.'"/>'.$file.'</li>';
+                    echo '<li class="ui-state-default">'.$file.'<img style="padding-left: 88%;" src="./jquery/css/icon_delete_action.gif" onclick="deleteODPFile(\''.$file.'\',true);"/><input type="hidden" name="modele[]" value="'.$file.'"/></li>';
                     }
                     }
             ?>
@@ -171,7 +172,7 @@
                  while($file = readdir($dir)) {
                     if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
                     {
-                    echo '<li class="ui-state-default"><input type="hidden" name="document[]" value="'.$file.'"/>'.$file.'</li>';
+                    echo '<li class="ui-state-default"><input type="hidden" name="document[]" value="'.$file.'"/>'.$file.'<img style="padding-left: 88%;" src="./jquery/css/icon_delete_action.gif" onclick="deleteODPFile(\''.$file.'\',false);"/></li>';
                     }
                     }
             ?>
