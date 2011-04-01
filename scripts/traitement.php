@@ -27,10 +27,11 @@ if(isset($_POST)){
             if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
             {
             rename($dirname.$file, $dirname."model.odp");
-            copy ($dirname.$file,"../document/temp/model.odp");
-            unlink($dirname.$file);
+           
             }
-         }
+         } 
+        copy ($dirname."model.odp","../document/temp/model.odp");
+        unlink($dirname."model.odp");
         unzip();
         smartCopy('./../xslt/tmp/model', './../document/resultat');
         picturesCopy();
