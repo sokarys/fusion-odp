@@ -1,6 +1,7 @@
 <?php
 
 function picturesCopy(){
+    echo "<br/>";
     echo "***********************************************<br/>";
     echo " PICTURESCOPY<br/>";
     echo "***********************************************<br/>";
@@ -13,7 +14,7 @@ function picturesCopy(){
             $dirSource2 = opendir($urlDirSource.$folder) or die('Erreur');
             while($file = @readdir($dirSource2)){
                 if($file == "Pictures"){
-                    smartCopy($urlDirSource.$folder."/".$file, $urlDirPictures);
+                    recursiveCopy($urlDirSource.$folder."/".$file, $urlDirPictures);
                 }
             }
             closedir($dirSource2);

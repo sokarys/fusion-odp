@@ -1,9 +1,10 @@
 <?php
 function executeXSLContenu(){
+    echo "<br/>";
     echo "***********************************************<br/>";
     echo " EXECUTEXSLCONTENU<br/>";
     echo "***********************************************<br/>";
-
+    echo "<pre>";
     $urlSource = "./../xslt/list.xml";
     $urlXSL = "./../xslt/copyFinal.xsl";
     $urlDirTarget = "./../document/resultat/";
@@ -23,5 +24,6 @@ function executeXSLContenu(){
     
     fclose($newFile);
     chmod($urlTarget,0777);
+    echo "</pre>";
 }
 ?>
