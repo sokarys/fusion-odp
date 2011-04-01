@@ -1,7 +1,7 @@
 <?php
 function chmodr($path, $filemode) {
     if (!is_dir($path))
-        return chmod($path, $filemode);
+        return (chmod($path, $filemode));
 
     $dh = opendir($path);
     while (($file = readdir($dh)) !== false) {

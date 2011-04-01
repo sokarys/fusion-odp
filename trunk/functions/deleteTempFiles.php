@@ -1,6 +1,7 @@
 <?php
 
 function deleteTempFiles(){
+    echo "<br/>";
     echo "***********************************************<br/>";
     echo " DELETE TEMP FILES<br/>";
     echo "***********************************************<br/>";
