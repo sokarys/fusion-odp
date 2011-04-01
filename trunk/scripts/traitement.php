@@ -5,6 +5,7 @@ include('./../functions/zip.php');
 include('./../functions/executeXSLContenu.php');
 include('./../functions/recursiveCopy.php');
 include('./../functions/picturesCopy.php');
+include('./../functions/deleteTempFiles.php');
 
 if(isset($_POST)){
     $dom = new DomDocument('1.0', 'utf-8');
@@ -35,6 +36,7 @@ if(isset($_POST)){
         picturesCopy();
         executeXSLContenu();
         zip();
+        deleteTempFiles();
 }else{
    echo("Cette page n'est pas accessible !!!");
 }
