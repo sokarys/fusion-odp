@@ -96,7 +96,6 @@
         <xsl:template match="draw:custom-shape|draw:path|draw:line|draw:ellipse|draw:rect" mode="page">
             <xsl:param name="nomFile"/>
             <xsl:copy>
-           <xsl:message><xsl:value-of select="$nomFile"/><xsl:value-of select="@draw:style-name"/></xsl:message>
                     <xsl:copy-of select="@*"/>
                         <xsl:if test="@draw:style-name">
                         <xsl:attribute name="draw:style-name">
