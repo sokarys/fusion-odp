@@ -132,11 +132,21 @@
     </xsl:template>
     
    <xsl:template match="style:style" mode="style">
-        <xsl:if test="style:text-properties/@fo:color">
         .<xsl:value-of select="@style:name"/>{
-            color:<xsl:value-of select="style:text-properties/@fo:color" />;
+            <xsl:if test="style:text-properties/@fo:color">
+                color:<xsl:value-of select="style:text-properties/@fo:color" />;
+            </xsl:if>
+            <xsl:if test="style:text-properties/@fo:font-style">
+                font-style:<xsl:value-of select="style:text-properties/@fo:font-style" />;
+            </xsl:if>
+            <xsl:if test="style:text-properties/@fo:font-weight">
+                font-weight:<xsl:value-of select="style:text-properties/@fo:font-weight" />;
+            </xsl:if>
+            <xsl:if test="style:text-properties/@style:text-underline-style">
+                    text-decoration:underline;
+            </xsl:if>
         }
-        </xsl:if>
+        
     </xsl:template>
 
    <xsl:template  match="node()|@*" mode="style">
