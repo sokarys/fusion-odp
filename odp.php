@@ -12,8 +12,8 @@
 </style>
 <?php
 if(isset($_GET['resultat'])){
-    require_once('./../document/final/'.$_GET['resultat'].'.html');
-    echo'plop';
+    include('./functions/htmlExist.php');
+    require_once('./document/final/'.$_GET['resultat'].'.html');
 }
 ?>
 <div class="block_fichier ui-widget-header">
@@ -24,7 +24,7 @@ if(isset($_GET['resultat'])){
      $dir = opendir($dirname);
      $count=0;
      while($file = readdir($dir)) {
-        if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
+        if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file) && strstr($file, '.html')==false)
         {
         $count++;
         }
@@ -32,11 +32,16 @@ if(isset($_GET['resultat'])){
     $courant=1;
      $dir2 = opendir($dirname);
      while($file = readdir($dir2)) {
-        if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
+        if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file) && strstr($file, '.html')==false)
         {
            if($courant<$count){
-               echo '<li class="ui-state-default"><img src="./jquery/css/icon_delete_action.gif" onclick="javascript:delet(\''.$file.'\')"/><a href="'.$dirname.'/'.$file.'">'.$file.'</a><input type="hidden" name="modele[]" value="'.$file.$courant.'"/></li>';
+               echo '<li class="ui-state-default"><img src="./jquery/css/icon_delete_action.gif" onclick="javascript:delet(\''.$file.'\')"/>';
+               if(isset($_GET['resultat']) && htmlExist($_GET['resultat'])){
+                  echo '<a href="odp.php?resultat='.strstr($file, '.', true).'"><img src="./jquery/css/HTML5.png"/></a>';
+               }           
+               echo '<a href="'.$dirname.'/'.$file.'">'.$file.'</a><input type="hidden" name="modele[]" value="'.$file.$courant.'"/></li>';
                $courant++;
+
            }else{
                echo '<li class="ui-state-default"><img src="./jquery/css/icon_delete_action.gif" onclick="javascript:delet(\''.$file.'\')"/><a href="'.$dirname.'/'.$file.'">'.$file.'</a><input type="hidden" name="modele[]" value="'.$file.'"/><img src="./jquery/css/new.png" style="padding-left:50%;"></li>';
            }
