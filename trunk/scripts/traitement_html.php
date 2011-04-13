@@ -3,6 +3,7 @@ include('./../functions/chmodr.php');
 include('./../functions/unzip.php');
 include('./../functions/zip.php');
 include('./../functions/executeXSLContenu.php');
+include('./../functions/executeXSLhtml.php');
 include('./../functions/recursiveCopy.php');
 include('./../functions/picturesCopy.php');
 include('./../functions/deleteTempFiles.php');
@@ -37,10 +38,11 @@ if(isset($_POST)){
         recursiveCopy('./../xslt/tmp/model', './../document/resultat');
         picturesCopy();
         executeXSLContenu();
-        $finalName = "resulat".time().".odp";
-        zip($finalName);
+        $finalName = "resulat".time();
+        executeXSLhtml($finalName.".html");
+        zip($finalName.".odp");
         //deleteTempFiles();
-        header('Location: ../odp.php');
+        header('Location: ../odp.php?resultat='.$finalName);
 }else{
    echo("Cette page n'est pas accessible !!!");
 }
