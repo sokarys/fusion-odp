@@ -39,6 +39,7 @@ if(isset($_POST)){
         executeXSLContenu();
         zip();
         //deleteTempFiles();
+        header('Location: ../odp.php');
 }else{
    echo("Cette page n'est pas accessible !!!");
 }
