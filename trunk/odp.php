@@ -17,10 +17,24 @@ if(isset($GET['resultat'])){
 <?php
      $dirname = './document/final';
      $dir = opendir($dirname);
+     $count=0;
      while($file = readdir($dir)) {
         if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
         {
-        echo '<li class="ui-state-default"><img src="./jquery/css/icon_delete_action.gif" onclick="javascript:delet(\''.$file.'\')"/>'.$file.'<input type="hidden" name="modele[]" value="'.$file.'"/></li>';
+        $count++;
+        }
+     }
+    $courant=1;
+     $dir2 = opendir($dirname);
+     while($file = readdir($dir2)) {
+        if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
+        {
+           if($courant<$count){
+               echo '<li class="ui-state-default"><img src="./jquery/css/icon_delete_action.gif" onclick="javascript:delet(\''.$file.'\')"/><a href="'.$dirname.'/'.$file.'">'.$file.'</a><input type="hidden" name="modele[]" value="'.$file.$courant.'"/></li>';
+               $courant++;
+           }else{
+               echo '<li class="ui-state-default"><img src="./jquery/css/icon_delete_action.gif" onclick="javascript:delet(\''.$file.'\')"/><a href="'.$dirname.'/'.$file.'">'.$file.'</a><input type="hidden" name="modele[]" value="'.$file.'"/><img src="./jquery/css/new.png" style="padding-left:50%;"></li>';
+           }
         }
      }
 ?>
