@@ -8,11 +8,11 @@
             <head>
                 <meta charset="utf-8" />
                 <title> HTML Timing :: Slideshow Engine </title>
-                <link rel="stylesheet" type="text/css" href="./../timesheets/demo/style/layout.css"/>
-                <link rel="stylesheet" type="text/css" href="./../timesheets/demo/style/transitions.css"/>
-                <link rel="stylesheet" type="text/css" href="./../timesheets/demo/style/slideshow.css"/>
-                <script type="text/javascript" src="./../timesheets/timesheets.js"></script>
-                <script type="text/javascript" src="./../timesheets/timesheets-navigation.js"></script>
+                <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/layout.css"/>
+                <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/transitions.css"/>
+                <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/slideshow.css"/>
+                <script type="text/javascript" src="./../../timesheets/timesheets.js"></script>
+                <script type="text/javascript" src="./../../timesheets/timesheets-navigation.js"></script>
                 <style>
                     <xsl:apply-templates mode="style"/>
                 </style>
