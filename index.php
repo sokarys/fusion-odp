@@ -35,6 +35,8 @@
 				},
                                 "ODP+HTML5": function() {
 					$( this ).dialog( "close" );
+                                        $("#formList").attr("action","./scripts/traitement_html.php");
+                                        document.formList.submit();
 				},
 				Cancel: function() {
 					$( this ).dialog( "close" );
@@ -165,7 +167,7 @@
 
 
 
-    <form name="formList" action="./scripts/traitement.php" enctype="multipart/form-data" method="post">
+    <form id="formList" name="formList" action="./scripts/traitement.php" enctype="multipart/form-data" method="post">
 
         <div class="block_fichier ui-widget-header">
             <ul id="ul_modele">
