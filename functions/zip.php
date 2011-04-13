@@ -1,13 +1,12 @@
 <?php
-function zip(){
+function zip($finalName){
     echo "<br/>";
     echo "***********************************************<br/>";
     echo " ZIP<br/>";
     echo "***********************************************<br/>";
 
     $urlDirSource = "./../document/resultat";
-    $urlDirTarget = "./../document/final";
-    $finalName = "resulat".time().".odp";
+    $urlDirTarget = "./../document/final";    
 
     $zip = new ZipArchive();
     if ($zip->open($urlDirTarget."/".$finalName, ZipArchive::OVERWRITE) !== TRUE) {
