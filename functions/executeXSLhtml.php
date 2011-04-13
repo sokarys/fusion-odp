@@ -7,7 +7,7 @@ function executeXSLhtml($name){
     echo "***********************************************<br/>";
     echo "<pre>";
     $urlSource = "./../document/resultat/content.xml";
-    $urlXSL = "./../xslt/copyFinal.xsl";
+    $urlXSL = "./../xslt/createHTML5.xsl";
     $urlDirTarget = "./../document/final/";
     $urlTarget = $urlDirTarget.$name;
     $xml = new DOMDocument();
@@ -20,11 +20,8 @@ function executeXSLhtml($name){
     $proc->importStyleSheet($xsl);
 
 
-    $newFile = fopen($urlTarget, "w+");
-    fputs($newFile, $proc->transformToURI($xml));
+    $proc->transformToURI($xml,$urlDirTarget.$name);
 
-    fclose($newFile);
-    chmod($urlTarget,0777);
     echo "</pre>";
 }
 
