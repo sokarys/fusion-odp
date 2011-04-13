@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Compilez vos présentations OPD</title>
+    <title>Fusionnez vos présentations ODP</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="stylesheet" href="./jquery/css/ui-lightness/jquery-ui-1.8.6.custom.css"/>
     <link rel="stylesheet" href="style.css"/>
@@ -9,7 +9,7 @@
     <script src="./jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
     
     <style>
-	#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+	#sortable { list-style-type: none; margin: 0; padding: 0;}
 	#sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
 	html>body #sortable li { height: 1.5em; line-height: 1.2em; }
 	.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
@@ -33,7 +33,7 @@
 					$( this ).dialog( "close" );
                                         document.formList.submit();
 				},
-                                "HTML5": function() {
+                                "ODP+HTML5": function() {
 					$( this ).dialog( "close" );
 				},
 				Cancel: function() {
@@ -62,6 +62,24 @@
             else
                 $("#dialog-confirm").dialog('open');
 
+        }
+        function deleteOdp(name){
+            $.ajax({
+                type:"GET",
+                url:"./functions/deleteODP.php?model="+name,
+                success: function(msg){
+                    document.location.href="index.php";
+                }
+            })
+        }
+        function deleteOdpfichier(fichier){
+            $.ajax({
+                type:"GET",
+                url:"./functions/deleteODP.php?fichier="+fichier,
+                success: function(msg){
+                    document.location.href="index.php";
+                }
+            })
         }
         </script>
 
@@ -157,7 +175,7 @@
                  while($file = readdir($dir)) {
                     if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
                     {
-                    echo '<li class="ui-state-default">'.$file.'<img style="padding-left: 88%;" src="./jquery/css/icon_delete_action.gif" onclick="deleteODPFile(\''.$file.'\',true);"/><input type="hidden" name="modele[]" value="'.$file.'"/></li>';
+                    echo '<li class="ui-state-default"><img src="./jquery/css/icon_delete_action.gif" onclick="javascript:deleteOdp(\''.$file.'\')"/>'.$file.'<input type="hidden" name="modele[]" value="'.$file.'"/></li>';
                     }
                     }
             ?>
@@ -172,7 +190,7 @@
                  while($file = readdir($dir)) {
                     if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
                     {
-                    echo '<li class="ui-state-default"><input type="hidden" name="document[]" value="'.$file.'"/>'.$file.'<img style="padding-left: 88%;" src="./jquery/css/icon_delete_action.gif" onclick="deleteODPFile(\''.$file.'\',false);"/></li>';
+                    echo '<li class="ui-state-default"><input type="hidden" name="document[]" value="'.$file.'"/><img src="./jquery/css/icon_delete_action.gif" onclick="javascript:deleteOdpfichier(\''.$file.'\')"/>'.$file.'</li>';
                     }
                     }
             ?>
