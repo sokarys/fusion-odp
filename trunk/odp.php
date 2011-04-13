@@ -1,5 +1,9 @@
 <link rel="stylesheet" href="./jquery/css/ui-lightness/jquery-ui-1.8.6.custom.css"/>
 <link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" type="text/css" href="./timesheets/demo/style/layout.css">
+<link rel="stylesheet" type="text/css" href="./timesheets/demo/style/transitions.css">
+<link rel="stylesheet" type="text/css" href="./timesheets/demo/style/slideshow.css">
+<script type="text/javascript" src="./timesheets/timesheets.js"></script><script type="text/javascript" src="./timesheets/timesheets-navigation.js"></script>
 <style type="" >
 	#sortable { list-style-type: none; margin: 0; padding: 0;}
 	#sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
@@ -7,8 +11,9 @@
 	.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
 </style>
 <?php
-if(isset($GET['resultat'])){
-
+if(isset($_GET['resultat'])){
+    require_once('./../document/final/'.$_GET['resultat'].'.html');
+    echo'plop';
 }
 ?>
 <div class="block_fichier ui-widget-header">
