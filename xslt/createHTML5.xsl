@@ -127,7 +127,7 @@
 
     <xsl:template match="draw:image" mode="content">
         <img>
-        <xsl:attribute name="src"><xsl:value-of select="@xlink:href"/></xsl:attribute>
+        <xsl:attribute name="src">./document/<xsl:value-of select="@xlink:href"/></xsl:attribute>
         </img>
     </xsl:template>
     
