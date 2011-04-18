@@ -6,6 +6,7 @@
 <script type="text/javascript" src="./timesheets/timesheets.js"></script><script type="text/javascript" src="./timesheets/timesheets-navigation.js"></script>
 <script>
             function deleteFinal(fichier){
+            }
             $.ajax({
                 type:"GET",
                 url:"./functions/deleteODP.php?final="+fichier,
@@ -13,7 +14,7 @@
                     document.location.href="ODP.php";
                 }
             })
-        }
+        
 </script>
 <style type="" >
 	#sortable { list-style-type: none; margin: 0; padding: 0;}
@@ -49,7 +50,7 @@ if(isset($_GET['resultat'])){
         if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file) && strstr($file, '.html')==false)
         {
            if($courant<$count){
-               echo '<li class="ui-state-default"><img src="./jquery/css/icon_delete_action.gif" onclick="deleteResultat(\''.$file.'\')"/>';
+               echo '<li class="ui-state-default"><img src="./jquery/css/icon_delete_action.gif" onclick="javascript:deleteFinal(\''.$file.'\')"  style="cursor:pointer;"/>';
                if(htmlExist(strstr($file, '.', true))){
                   echo '<a href="odp.php?resultat='.strstr($file, '.', true).'"><img src="./jquery/css/HTML5.png" style="border:none;width:32px;padding:2px;"/></a>';
                }           
@@ -57,7 +58,7 @@ if(isset($_GET['resultat'])){
                $courant++;
 
            }else{
-               echo '<li class="ui-state-default"><img src="./jquery/css/icon_delete_action.gif" onclick="deleteResultat(\''.$file.'\')"/>';
+               echo '<li class="ui-state-default"><img src="./jquery/css/icon_delete_action.gif" onclick="javascript:deleteFinal(\''.$file.'\')" style="cursor:pointer;"/>';
                if(htmlExist(strstr($file, '.', true))){
                   echo '<a href="odp.php?resultat='.strstr($file, '.', true).'"><img src="./jquery/css/HTML5.png" style="border:none;width:32px;padding:2px;"/></a>';
                }
