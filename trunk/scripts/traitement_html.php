@@ -41,7 +41,7 @@ if(isset($_POST)){
         $finalName = "resulat".time();
         executeXSLhtml($finalName.".html");
         zip($finalName.".odp");
-        //deleteTempFiles();
+        deleteTempFiles();
         header('Location: ../odp.php?resultat='.$finalName);
 }else{
    echo("Cette page n'est pas accessible !!!");
