@@ -10,7 +10,7 @@ if(isset($_GET['fichier'])){
 
 }
 if(isset($_GET['final'])){
-    deleteODPFile($_GET['final'],false);
+    deleteResultat($_GET['final']);
 
 }
 ?>
