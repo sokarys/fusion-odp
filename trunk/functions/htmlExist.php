@@ -8,9 +8,10 @@ function htmlExist($name){
      $dirname = './document/final/';
          $dir = opendir($dirname);
          while($file = readdir($dir)) {
-            if(strstr($file, $name.'.hmtl') && !is_dir($dirname.$file))
+            $nameF=$name.".html";
+            if(strstr($file,$nameF)!=FALSE && !is_dir($dirname.$file))
             {
-                return true;
+                return true;                
             }
          }
          return false;
