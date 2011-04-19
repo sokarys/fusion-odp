@@ -102,11 +102,11 @@ img{
     width:80%;
 }
 
-#ul_modele li{
-    list-style-type: none;
-    padding: 5px;
-    font-size: 1.2em;
-    margin-left: -34px;
+#ul_modele li, #ui-sortable li{
+    list-style-type: 		none;
+    padding: 				5px;
+    font-size: 				1.2em;
+    margin-left:			-34px;
 }
 
 .ui-widget-header { 
@@ -117,7 +117,7 @@ img{
 
 .ui-widget-header-top{
 	height:					40px;
-	-moz-background-size:	100% 100%;	
+	background-size:		100% 100%;	
 	background-image: 		url(images/bkgUploadTop.png);
 	background-position:	left top;
 	background-repeat:		no-repeat;
@@ -125,14 +125,14 @@ img{
 
 .ui-widget-header-middle{
 	background-image: 		url(images/bkgUploadMiddle.png); 
-	-moz-background-size:	100% 100%;
+	background-size:		100% 100%;
 	background-position:	left top;
 	background-repeat:		no-repeat;
 }
 
 .ui-widget-header-bottom{
 	height:					40px;
-	-moz-background-size:	100% 100%;
+	background-size:		100% 100%;
 	background-image: 		url(images/bkgUploadBottom.png);
 	background-position:	left top;
 	background-repeat:		no-repeat;
@@ -142,6 +142,10 @@ img{
 	padding-left:			30px !important;
 	padding-right:			30px !important;
 	margin:					0px !important;
+}
+
+#ui-sortable{
+	margin:					0px;
 }
 
 #ul_modele{
@@ -155,10 +159,6 @@ img{
 	padding-top:			5px !important;
 	padding-bottom:			5px !important;
 	margin:					0px !important;
-}
-
-#ui-sortable{
-	margin:					0px;
 }
 
 .ui-sortable img, #ul_modele img{
@@ -181,7 +181,7 @@ img{
 	padding-left:			45px;
 	font-size:				16px;
 	font-weight:			bold;
-	color:					#FF0000;
+	color:					#66CCFF;
 }
 
 .blocPresentationList{
@@ -236,7 +236,7 @@ img{
 
 .ui-dialog-titlebar{
 	background-image: 		url(images/bkgUpload.png); 
-	-moz-background-size:	100% 100%;
+	background-size:e:		100% 100%;
 	background-position:	left top;
 	background-repeat:		no-repeat;
 }
