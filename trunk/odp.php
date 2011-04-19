@@ -6,8 +6,6 @@
     
     <link rel="stylesheet" type="text/css" href="./timesheets/demo/style/transitions.css">
     <link rel="stylesheet" type="text/css" href="./timesheets/demo/style/slideshow.css">
-    <link rel="stylesheet" type="text/css" href="./timesheets/demo/style/audio.css">
-    <link rel="stylesheet" type="text/css" href="./timesheets/demo/style/video.css">
     <script src="./jquery/js/jquery-1.4.2.min.js"></script>
     <script src="./jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
     <script type="text/javascript" src="./timesheets/timesheets.js"></script><script type="text/javascript" src="./timesheets/timesheets-navigation.js"></script>
