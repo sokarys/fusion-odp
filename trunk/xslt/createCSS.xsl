@@ -20,9 +20,7 @@
 	ul {
             <xsl:apply-templates select="node()" mode="style"/>
 	}
-
-
-</xsl:if>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="style:style/style:graphic-properties" mode="style">
@@ -60,7 +58,7 @@
                 font-weight:<xsl:value-of select="@fo:font-weight" />;
             </xsl:if>
             <xsl:if test="@style:text-underline-style">
-                text-decoration:underline;
+                text-decoration:<xsl:value-of select="@style:text-underline-style" />;
             </xsl:if>
     </xsl:template>
 

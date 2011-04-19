@@ -138,13 +138,13 @@ style:style style:parent-style-name -->
             <xsl:when test="@presentation:class = 'title'">
                 <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
                 <h2>
-                    <xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>
+                <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
                     <xsl:apply-templates select="draw:text-box/text:p"  mode="content"/>
                 </h2>
             </xsl:when>
             <xsl:when test="@presentation:class != 'title'">
                 <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
-                <xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>
+                <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
                 <xsl:apply-templates select="node()"  mode="content"/>
             </xsl:when>
             </xsl:choose>
