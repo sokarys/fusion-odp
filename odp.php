@@ -30,7 +30,9 @@
 include('./functions/htmlExist.php');
 include('./functions/deleteResultat.php');
 if(isset($_GET['resultat'])){
-    require_once('./document/final/'.$_GET['resultat'].'.css');
+    ?>
+    <link rel=stylesheet type="text/css" href="<?php echo('./document/final/'.$_GET['resultat'].'.css');?>">
+    <?php
     require_once('./document/final/'.$_GET['resultat'].'.html');
 }
 ?>
@@ -42,7 +44,7 @@ if(isset($_GET['resultat'])){
      $dir = opendir($dirname);
      $count=0;
      while($file = readdir($dir)) {
-        if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file) && strstr($file, '.html')==false)
+        if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file) && strstr($file, '.html')==false  && strstr($file, '.css')==false)
         {
         $count++;
         }
@@ -50,7 +52,7 @@ if(isset($_GET['resultat'])){
     $courant=1;
      $dir2 = opendir($dirname);
      while($file = readdir($dir2)) {
-        if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file) && strstr($file, '.html')==false)
+        if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file) && strstr($file, '.html')==false && strstr($file, '.css')==false)
         {
            if($courant<$count){
                echo '<li class="ui-state-default"><img src="./jquery/css/icon_delete_action.gif" onclick="javascript:deleteFinal(\''.$file.'\')"  style="cursor:pointer;"/>';
