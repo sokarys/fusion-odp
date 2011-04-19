@@ -39,8 +39,9 @@ if(isset($_POST)){
         picturesCopy();
         executeXSLContenu();
         $finalName = "resulat".time();
-        executeXSLhtml($finalName.".html");
-        executeXSLcss($finalName.".css");
+        executeXSLcss($finalName.".html");
+        rename($finalName.".html", $finalName.".css");
+        executeXSLhtml($finalName.".html");        
         zip($finalName.".odp");
         deleteTempFiles();
         header('Location: ../odp.php?resultat='.$finalName);
