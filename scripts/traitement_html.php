@@ -40,6 +40,7 @@ if(isset($_POST)){
         executeXSLContenu();
         $finalName = "resulat".time();
         executeXSLhtml($finalName.".html");
+        executeXSLcss($finalName.".css");
         zip($finalName.".odp");
         deleteTempFiles();
         header('Location: ../odp.php?resultat='.$finalName);
