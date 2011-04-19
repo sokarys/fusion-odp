@@ -4,6 +4,7 @@ include('./../functions/unzip.php');
 include('./../functions/zip.php');
 include('./../functions/executeXSLContenu.php');
 include('./../functions/executeXSLhtml.php');
+include('./../functions/executeXSLcss.php');
 include('./../functions/recursiveCopy.php');
 include('./../functions/picturesCopy.php');
 include('./../functions/deleteTempFiles.php');
