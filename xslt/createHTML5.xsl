@@ -4,7 +4,7 @@
     <xsl:output method="html" indent="yes"/>
     
     <xsl:template match="office:document-content">
-        <html lang="en">
+        <html lang="en" >
             <head>
                 <meta charset="utf-8" />
                 <title> HTML Timing :: Slideshow Engine </title>
@@ -79,7 +79,22 @@
         <div smil:timeContainer="par" smil:dur="12s">
             <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
             <xsl:attribute name="id">slide<xsl:value-of select="position() div 2"/></xsl:attribute>
-            <xsl:apply-templates select="node()" mode="content"/>
+
+<xsl:choose>
+          <xsl:when test="draw:custom-shape">
+              <xsl:apply-templates select="node()"  mode="content"/>
+                <svg version="1.1" viewBox="0 0 500 340" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink = "http://www.w3.org/1999/xlink" xmlns:smil  = "http://www.w3.org/ns/SMIL">
+                  <title> SVG Timing </title>
+                    <g id="slideshow" smil:timeContainer = "seq" smil:timeAction    = "intrinsic"    smil:repeatCount   = "indefinite"    smil:next          = "click">
+                           <xsl:apply-templates mode="shape"/>
+                    </g>
+                    </svg>
+            </xsl:when>
+          <xsl:otherwise>
+                <xsl:apply-templates select="node()" mode="content"/>
+            </xsl:otherwise>
+        </xsl:choose>
+            
         </div>
     </xsl:template>
 
@@ -189,6 +204,19 @@ style:style style:parent-style-name -->
             <xsl:if test="style:paragraph-properties/@fo:margin-bottom">
                     margin-bottom:<xsl:value-of select="style:paragraph-properties/@fo:margin-bottom" />;
             </xsl:if>
+            <xsl:if test="style:graphic-properties/@svg:stroke-color">
+                    stroke:<xsl:value-of select="style:graphic-properties/@svg:stroke-color" />;
+            </xsl:if>
+            <xsl:if test="style:graphic-properties/@svg:stroke-width">
+                    stroke-width:<xsl:value-of select="style:graphic-properties/@svg:stroke-width" />;
+            </xsl:if>
+            <!--<xsl:if test="style:graphic-properties/@draw:fill">
+                    fill:<xsl:value-of select="style:graphic-properties/@draw:fill" />;
+            </xsl:if>-->
+            <xsl:if test="style:graphic-properties/@draw:fill-color">
+                    fill:<xsl:value-of select="style:graphic-properties/@draw:fill-color" />;
+            </xsl:if>
+            <!-- draw:fill="solid" draw:fill-color="#ffff00" draw:textarea-horizontal-align="justify" draw:textarea-vertical-align="middle" draw:auto-grow-height="false" fo:padding-top="0.325cm" fo:padding-bottom="0.325cm" fo:padding-left="0.45cm" fo:padding-right="0.45cm"/>-->
         }
         
     </xsl:template>
@@ -222,9 +250,41 @@ style:style style:parent-style-name -->
         </audio>
       </div>
     </xsl:template>
+
+    
+    <xsl:template match="draw:custom-shape" mode="shape">
+        <!-- <object type="image/svg+xml" class="highlight"> -->
+                         <xsl:apply-templates  mode="shape">
+                            <xsl:with-param name="x"><xsl:value-of select="substring-before(@svg:x,'cm')"/> </xsl:with-param>
+                            <xsl:with-param name="y"><xsl:value-of select="substring-before(@svg:y,'cm')"/> </xsl:with-param>
+                            <xsl:with-param name="width"><xsl:value-of select="substring-before(@svg:width,'cm')"/> </xsl:with-param>
+                            <xsl:with-param name="height"><xsl:value-of select="substring-before(@svg:height,'cm')"/> </xsl:with-param>
+                            <xsl:with-param name="class"><xsl:value-of select="@draw:style-name"/> </xsl:with-param>
+                         </xsl:apply-templates>
+    </xsl:template>
+    
+    <xsl:template match="draw:custom-shape/draw:enhanced-geometry[@draw:type='ellipse']" mode="shape">
+        <xsl:param name="x"/>
+        <xsl:param name="y"/>
+        <xsl:param name="width"/>
+        <xsl:param name="height"/>
+        <xsl:param name="class"/>
+         <ellipse>
+            <xsl:attribute name="class"><xsl:value-of select="$class"/></xsl:attribute>
+            <xsl:attribute name="cx"><xsl:value-of select="(($x +( $width div 2) ) div 2)"/>cm</xsl:attribute>
+                            <xsl:attribute name="cy"><xsl:value-of select="(($y +( $height div 2) ) div 2)"/>cm</xsl:attribute>
+                            <xsl:attribute name="rx"><xsl:value-of select="((( $width div 2.5) ) )"/>cm</xsl:attribute>
+                            <xsl:attribute name="ry"><xsl:value-of select="(( $height div 2.5) )"/>cm</xsl:attribute>
+         </ellipse>
+    </xsl:template>
+
     
    <xsl:template  match="node()|@*" mode="style">
        <xsl:apply-templates select="node()|@*"  mode="style"/>
+   </xsl:template>
+
+   <xsl:template  match="node()|@*" mode="shape">
+       <xsl:apply-templates select="node()|@*"  mode="shape"/>
    </xsl:template>
 
    <xsl:template  match="node()|@*" mode="content">
