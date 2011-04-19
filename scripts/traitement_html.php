@@ -25,6 +25,7 @@ if(isset($_POST)){
 
     //renamme et deplacement de model
         $dirname = './../document/temp_model/';
+         $dirnameFinal = './../document/final/';
          $dir = opendir($dirname);
          while($file = readdir($dir)) {
             if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file))
@@ -41,7 +42,7 @@ if(isset($_POST)){
         executeXSLContenu();
         $finalName = "resulat".time();
         executeXSLcss($finalName.".html");
-        rename($finalName.".html", $finalName.".css");
+        rename($dirnameFinal.$finalName.".html",$dirnameFinal.$finalName.".css");
         executeXSLhtml($finalName.".html");        
         zip($finalName.".odp");
         deleteTempFiles();
