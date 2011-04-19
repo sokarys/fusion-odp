@@ -210,17 +210,12 @@ style:style style:parent-style-name -->
             <xsl:if test="style:graphic-properties/@svg:stroke-width">
                     stroke-width:<xsl:value-of select="style:graphic-properties/@svg:stroke-width" />;
             </xsl:if>
-            <!--<xsl:if test="style:graphic-properties/@draw:fill">
-                    fill:<xsl:value-of select="style:graphic-properties/@draw:fill" />;
-            </xsl:if>-->
             <xsl:if test="style:graphic-properties/@draw:fill-color">
                     fill:<xsl:value-of select="style:graphic-properties/@draw:fill-color" />;
             </xsl:if>
-            <!-- draw:fill="solid" draw:fill-color="#ffff00" draw:textarea-horizontal-align="justify" draw:textarea-vertical-align="middle" draw:auto-grow-height="false" fo:padding-top="0.325cm" fo:padding-bottom="0.325cm" fo:padding-left="0.45cm" fo:padding-right="0.45cm"/>-->
         }
 
     </xsl:template>
-
 
     <xsl:template match="draw:plugin" mode="content">
      <div id="mediaController">
@@ -273,8 +268,8 @@ style:style style:parent-style-name -->
             <xsl:attribute name="class"><xsl:value-of select="$class"/></xsl:attribute>
             <xsl:attribute name="cx"><xsl:value-of select="(($x +( $width div 2) ) div 2)"/>cm</xsl:attribute>
                             <xsl:attribute name="cy"><xsl:value-of select="(($y +( $height div 2) ) div 4)"/>cm</xsl:attribute>
-                            <xsl:attribute name="rx"><xsl:value-of select="((( $width div 4) ) )"/>cm</xsl:attribute>
-                            <xsl:attribute name="ry"><xsl:value-of select="(( $height div 4)  )"/>cm</xsl:attribute>
+                            <xsl:attribute name="rx"><xsl:value-of select="((( $width div 5) ) )"/>cm</xsl:attribute>
+                            <xsl:attribute name="ry"><xsl:value-of select="(( $height div 5)  )"/>cm</xsl:attribute>
          </ellipse>
     </xsl:template>
 
