@@ -83,12 +83,17 @@
         <xsl:choose>
           <xsl:when test="draw:custom-shape">
               <xsl:apply-templates select="node()"  mode="content"/>
-                <svg version="1.1" viewBox="0 0 500 340" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink = "http://www.w3.org/1999/xlink" xmlns:smil  = "http://www.w3.org/ns/SMIL">
+                <svg version="1.1" viewBox="0 0 500 340" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:smil="http://www.w3.org/ns/SMIL">
+                  <script type="text/javascript" src="./../../timesheets/timesheets.js"></script>
                   <title> SVG Timing </title>
-                    
+                    <g>
                            <xsl:apply-templates mode="shape"/>
-                    
+                    </g>
                     </svg>
+            </xsl:when>
+            <xsl:when test="draw:plugin">
+                <xsl:apply-templates select="node()"  mode="content"/>
+                <xsl:apply-templates  mode="plugin"/>
             </xsl:when>
           <xsl:otherwise>
                 <xsl:apply-templates select="node()" mode="content"/>
@@ -160,9 +165,9 @@ style:style style:parent-style-name -->
                     <xsl:apply-templates select="draw:text-box/text:p"  mode="content"/>
                 </h2>
             </xsl:when>
-            <xsl:when test="@presentation:class != 'title' and @presentation:class != 'subtitle'">
+            <xsl:otherwise>
                 <xsl:apply-templates select="node()"  mode="content"/>
-            </xsl:when>
+            </xsl:otherwise>
             </xsl:choose>
     </xsl:template>
 
@@ -217,7 +222,7 @@ style:style style:parent-style-name -->
 
     </xsl:template>
 
-    <xsl:template match="draw:plugin" mode="content">
+    <xsl:template match="draw:plugin" mode="plugin">
      <div id="mediaController">
         <div id="timeline">
           <div id="mediaStart" class="play">
@@ -264,16 +269,14 @@ style:style style:parent-style-name -->
         <xsl:param name="width"/>
         <xsl:param name="height"/>
         <xsl:param name="class"/>
-        <g id="slideshow" smil:timeContainer = "seq" smil:timeAction="intrinsic"    smil:repeatCount="indefinite"    smil:next="click">
-         <ellipse>
+
+         <ellipse >
             <xsl:attribute name="class"><xsl:value-of select="$class"/></xsl:attribute>
-            <xsl:attribute name="cx">
-                <xsl:value-of select="(($x +( $width div 2) ) div 2)"/>cm</xsl:attribute>
-                <xsl:attribute name="cy"><xsl:value-of select="(($y +( $height div 2) ) div 4)"/>cm</xsl:attribute>
-                <xsl:attribute name="rx"><xsl:value-of select="((( $width div 5) ) )"/>cm</xsl:attribute>
-                <xsl:attribute name="ry"><xsl:value-of select="(( $height div 5)  )"/>cm</xsl:attribute>
+            <xsl:attribute name="cx"><xsl:value-of select="(($x +( $width div 2) ) div 2)"/>cm</xsl:attribute>
+                            <xsl:attribute name="cy"><xsl:value-of select="(($y +( $height div 2) ) div 4)"/>cm</xsl:attribute>
+                            <xsl:attribute name="rx"><xsl:value-of select="((( $width div 5) ) )"/>cm</xsl:attribute>
+                            <xsl:attribute name="ry"><xsl:value-of select="(( $height div 5)  )"/>cm</xsl:attribute>
          </ellipse>
-         </g>
     </xsl:template>
 
 
@@ -287,5 +290,8 @@ style:style style:parent-style-name -->
 
    <xsl:template  match="node()|@*" mode="content">
        <xsl:apply-templates select="node()|@*"  mode="content"/>
+   </xsl:template>
+    <xsl:template  match="node()|@*" mode="plugin">
+       <xsl:apply-templates select="node()|@*"  mode="plugin"/>
    </xsl:template>
 </xsl:stylesheet>
