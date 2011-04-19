@@ -12,5 +12,6 @@ if(isset($_GET['fichier'])){
 if(isset($_GET['final'])){
     deleteResultat($_GET['final']);
     deleteResultat(str_replace(".odp",".html",$_GET['final']));
+    deleteResultat(str_replace(".odp",".css",$_GET['final']));
 }
 ?>
