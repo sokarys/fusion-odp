@@ -193,6 +193,36 @@ style:style style:parent-style-name -->
         
     </xsl:template>
 
+
+    <xsl:template match="draw:plugin" mode="content">
+     <div id="mediaController">
+        <div id="timeline">
+          <div id="mediaStart" class="play">
+            <button class="pause">
+              <img src="images/media-pause.png" alt="pause" />
+            </button>
+            <button class="play">
+              <img src="images/media-play.png" alt="play" />
+            </button>
+          </div>
+          <div id="timeCursor"><span></span></div>
+          <div id="timeValue">
+            <span>0:00</span>
+          </div>
+          <br style="clear: both; line-height: 1px;" />       </div>
+
+        <audio id="audioPlayer" controls="" autoplay="" preload="auto">
+          <source type="audio/mp3">
+            <xsl:attribute name="src"><xsl:value-of select="@xlink:href"/></xsl:attribute>
+          </source>
+          This page requires <strong>&lt;audio&gt;</strong> support:<br />
+          best viewed with Firefox 3.5+, Safari 4+, Chrome 5+, Opera 10.60+ or IE9.<br />
+           <br />
+          Internet Explorer users, please enable Flash or Silverlight.
+        </audio>
+      </div>
+    </xsl:template>
+    
    <xsl:template  match="node()|@*" mode="style">
        <xsl:apply-templates select="node()|@*"  mode="style"/>
    </xsl:template>
