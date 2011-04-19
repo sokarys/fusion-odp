@@ -2,22 +2,31 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"   xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smil="urn:oasis:names:tc:opendocument:xmlns:smil-compatible:1.0" xmlns:anim="urn:oasis:names:tc:opendocument:xmlns:animation:1.0" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:officeooo="http://openoffice.org/2009/office" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" office:version="1.2" grddl:transformation="http://docs.oasis-open.org/office/1.2/xslt/odf2rdf.xsl">
 
     <xsl:output method="html" indent="yes"/>
-
+    
     <xsl:template match="office:document-content">
         <html lang="en">
             <head>
                 <meta charset="utf-8" />
                 <title> HTML Timing :: Slideshow Engine </title>
+
+               <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/styles.css"/> <!--
                 <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/layout.css"/>
                 <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/transitions.css"/>
-                <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/slideshow.css"/>
+                <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/slideshow.css"/>-->
                 <script type="text/javascript" src="./../../timesheets/timesheets.js"></script>
                 <script type="text/javascript" src="./../../timesheets/timesheets-navigation.js"></script>
+                
+                <!-- <link rel="stylesheet" type="text/css" href="./../timesheets/demo/style/layout.css"/>
+                <link rel="stylesheet" type="text/css" href="./../timesheets/demo/style/transitions.css"/>
+                <link rel="stylesheet" type="text/css" href="./../timesheets/demo/style/slideshow.css"/>
+                <script type="text/javascript" src="./../timesheets/timesheets.js"></script>
+                <script type="text/javascript" src="./../timesheets/timesheets-navigation.js"></script>
+                -->
                 <style>
                     <xsl:apply-templates mode="style"/>
                 </style>
             </head>
-            <body class="carousel">
+            <body class="none">
                 <div id="demo">
                     <div id="slideshow"
                      data-timecontainer = "seq"
@@ -68,10 +77,10 @@
     
     <xsl:template match="/office:document-content/office:body/office:presentation/draw:page"  mode="content">
         <div smil:timeContainer="par" smil:dur="12s">
+            <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
             <xsl:attribute name="id">slide<xsl:value-of select="position() div 2"/></xsl:attribute>
             <xsl:apply-templates select="node()" mode="content"/>
         </div>
-        <xsl:message>Testt 1</xsl:message>
     </xsl:template>
 
     <xsl:template match="text:p"  mode="content">
@@ -103,23 +112,39 @@
         <xsl:apply-templates select="node()" mode="content"/>
         </xsl:if>
         <xsl:if test="count(text:span) = 0">
-        <xsl:apply-templates select="."/>
+        <xsl:apply-templates select="." />
         </xsl:if>
     </xsl:template>
 
     
+<!-- draw:frame draw:style-name
+presentation:notes draw:style-name
+draw:page-thumbnail draw:style-name
+draw:frame presentation:style-name
+style:style style:parent-style-name -->
+    <!--<xsl:template match="*/@presentation:class" mode="content">
+         <xsl:attribute name="class"><xsl:value-of select="@presentation:class"/></xsl:attribute>
+         <xsl:apply-templates mode="content"/>
+    </xsl:template>-->
+    
     <xsl:template match="text:span"  mode="content">
             <xsl:attribute name="class"><xsl:value-of select="@text:style-name"/></xsl:attribute>
-            <xsl:value-of select="node()"  mode="content"/>
+            <xsl:value-of select="." />
     </xsl:template>
 
 
-    <xsl:template match="draw:frame"  mode="content">
+    <xsl:template match="draw:frame"  mode="content">  
             <xsl:choose>
             <xsl:when test="@presentation:class = 'title'">
-                <h2><xsl:apply-templates select="draw:text-box/text:p"  mode="content"/></h2>
+                <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
+                <h2>
+                    <xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>
+                    <xsl:apply-templates select="draw:text-box/text:p"  mode="content"/>
+                </h2>
             </xsl:when>
             <xsl:when test="@presentation:class != 'title'">
+                <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
+                <xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>
                 <xsl:apply-templates select="node()"  mode="content"/>
             </xsl:when>
             </xsl:choose>
@@ -143,7 +168,25 @@
                 font-weight:<xsl:value-of select="style:text-properties/@fo:font-weight" />;
             </xsl:if>
             <xsl:if test="style:text-properties/@style:text-underline-style">
-                    text-decoration:underline;
+                text-decoration:underline;
+            </xsl:if>
+            <xsl:if test="style:graphic-properties/@draw:fill-color">
+                background-color:<xsl:value-of select="style:graphic-properties/@draw:fill-color" />;
+            </xsl:if>
+            <xsl:if test="style:paragraph-properties/@fo:text-align">
+                    text-align:<xsl:value-of select="style:paragraph-properties/@fo:text-align" />;
+            </xsl:if>
+            <xsl:if test="style:paragraph-properties/@fo:margin-left">
+                    margin-left:<xsl:value-of select="style:paragraph-properties/@fo:margin-left" />;
+            </xsl:if>
+            <xsl:if test="style:paragraph-properties/@fo:margin-right">
+                    margin-right:<xsl:value-of select="style:paragraph-properties/@fo:margin-right" />;
+            </xsl:if>
+            <xsl:if test="style:paragraph-properties/@fo:margin-top">
+                    margin-top:<xsl:value-of select="style:paragraph-properties/@fo:margin-top" />;
+            </xsl:if>
+            <xsl:if test="style:paragraph-properties/@fo:margin-bottom">
+                    margin-bottom:<xsl:value-of select="style:paragraph-properties/@fo:margin-bottom" />;
             </xsl:if>
         }
         
