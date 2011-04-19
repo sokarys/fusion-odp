@@ -1,25 +1,107 @@
-/* 
-    Document   : style.css
-    Created on : 30 mars 2011, 10:48:44
-    Author     : Michael
-    Description:
-        Purpose of the stylesheet follows.
-*/
-
-/* 
-   TODO customize this sample style
-   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
-*/
-
 root { 
-    display: block;
+    display: 				block;
 }
+
+html, body {
+	margin: 				0;
+	padding: 				0;
+	padding-top:			10px;
+	height: 				95%;
+	background-image:		url(images/esquisse-style-XSLT_02.jpg);
+	background-attachment:	fixed;
+	background-repeat:		no-repeat;
+	background-position:	left top;
+}
+
+#main{
+	width:					992px;
+	height:					100%;
+	margin-left:			auto;
+	margin-right:			auto;
+}
+
+
+#header{	
+	width:					992px;
+	height:					162px;
+	background-image:		url(images/windowBackgroundTop.png);
+	background-repeat:		no-repeat;
+	background-position:	left top;
+}
+
+#header img{
+	margin-left:			246px;
+	margin-top:				36px;
+}
+
+#footer{
+	width:					992px;
+	height:					63px;
+	background-image:		url(images/windowBackgroundBottom.png);
+	background-repeat:		no-repeat;
+	background-position:	left top;
+	padding-left:			15px;
+}
+
+#content{
+	background-image:		url(images/windowBackGroundMiddle.png);
+	background-repeat:		repeat-y;
+	background-position:	left top;
+	padding-left:			20px;
+	padding-right:			20px;
+}
+
+.uploadTable{
+	color:					#FFFFFF;
+	font-weight:			bold;
+	margin-left:			auto;
+	margin-right:			auto;
+	padding-bottom:			3px;
+}
+
+.uploadTitle{
+	padding-left:			10px;
+ 	padding-right:			20px;
+}
+
+.btnValidateTxt a{
+	color:					#66CCFF;
+	font-weight:			bold;
+	font-size:				18px;
+	text-decoration:		none;	
+}
+
+.btnValidateTxt a:hover{
+	color:					#FFFFFF;
+	font-weight:			bold;
+	font-size:				18px;
+	text-decoration:		none;	
+}
+
+#btnValidate, #uploadBtnSubmit{
+	margin-left:			auto;
+	margin-right:			auto;
+	width: 					220px;
+}
+
+.btnValidateTxt{
+	padding-right:			10px;
+}
+
+fieldset{
+    border:                 none;
+}
+
+img{
+	border:					none;	
+}
+
 .block_fichier{
-    -moz-border-radius: 4px 4px 4px 4px;
-    padding:10px;
-    margin: 20px auto;
-    width:50%;
+	margin-left: 			auto;
+	margin-right:			auto;			
+    width:80%;
 }
+
 #ul_modele li{
     list-style-type: none;
     padding: 5px;
@@ -27,3 +109,130 @@ root {
     margin-left: -34px;
 }
 
+.ui-widget-header { 
+	border: 				none;
+	font-weight: 			bold; 
+}
+
+
+.ui-widget-header-top{
+	height:					40px;
+	-moz-background-size:	100% 100%;	
+	background-image: 		url(images/bkgUploadTop.png);
+	background-position:	left top;
+	background-repeat:		no-repeat;
+}
+
+.ui-widget-header-middle{
+	background-image: 		url(images/bkgUploadMiddle.png); 
+	-moz-background-size:	100% 100%;
+	background-position:	left top;
+	background-repeat:		no-repeat;
+}
+
+.ui-widget-header-bottom{
+	height:					40px;
+	-moz-background-size:	100% 100%;
+	background-image: 		url(images/bkgUploadBottom.png);
+	background-position:	left top;
+	background-repeat:		no-repeat;
+}
+
+.ui-sortable{
+	padding-left:			30px !important;
+	padding-right:			30px !important;
+	margin:					0px !important;
+}
+
+#ul_modele{
+	padding-left:			30px !important;
+	padding-right:			30px !important;
+	height:					40px;
+	margin:					0px !important;
+}
+
+.ui-state-default{
+	padding-top:			5px !important;
+	padding-bottom:			5px !important;
+	margin:					0px !important;
+}
+
+.ui-sortable img, #ul_modele img{
+	padding-right:			10px;	
+}
+
+.ui-state-highlight{
+	border: 				1px solid #6d97a3 !important; 
+	background-color: 		#83b4c3 !important;
+	background-image:		none !important;
+	-moz-border-radius:		10px 10px 10px 10px;
+	margin:					0px !important;
+}
+
+.odpElement img, .errorMessage img, .presentationList img{
+	vertical-align:			middle;
+}
+
+.errorMessage{
+	padding-left:			45px;
+	font-size:				16px;
+	font-weight:			bold;
+	color:					#FF0000;
+}
+
+.blocPresentationList{
+	width:					50%;
+	margin-left:			auto;
+	margin-right:			auto;
+}
+
+.blocPresentationList  h2{
+	margin-top:				0px !important;
+	margin-bottom:			0px;
+	color:					#FFFFFF;
+	text-shadow:			0.1em 0.1em #000000;
+}
+
+.presentationList{
+	padding-left:			10px;
+	border: 				none;
+	font-weight: 			bold;
+}
+
+#slideshow{
+	margin-top:				30px !important;
+	background-color:		#FFFFFF;
+	-moz-box-shadow: 		0px 0px 25px #00FFFF;
+}
+
+#transitionSelector{
+	width:					600px;
+	margin-bottom:			25px !important;
+	color:					#FFFFFF;
+	display:				none;
+}
+
+#transitionSelector button {
+	color:					#66CCFF !important;					
+}
+
+.ui-dialog .ui-dialog-buttonpane button{
+	margin:					0.5em 0.4em 0.5em 0 !important;
+	height:					38px;
+}
+
+.ui-button-text{
+	padding:				0 1em 1em 1em !important;
+}
+
+.ui-button-text-only ui-state-hover{
+	margin:					0px !important;
+	padding:				0px !important;
+}
+
+.ui-dialog-titlebar{
+	background-image: 		url(images/bkgUpload.png); 
+	-moz-background-size:	100% 100%;
+	background-position:	left top;
+	background-repeat:		no-repeat;
+}
