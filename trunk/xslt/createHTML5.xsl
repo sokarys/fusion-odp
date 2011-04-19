@@ -91,10 +91,6 @@
                     </g>
                     </svg>
             </xsl:when>
-            <xsl:when test="draw:plugin">
-                <xsl:apply-templates select="node()"  mode="content"/>
-                <xsl:apply-templates  mode="plugin"/>
-            </xsl:when>
           <xsl:otherwise>
                 <xsl:apply-templates select="node()" mode="content"/>
             </xsl:otherwise>
@@ -155,6 +151,10 @@ style:style style:parent-style-name -->
 
     <xsl:template match="draw:frame"  mode="content">
             <xsl:choose>
+            <xsl:when test="draw:plugin">
+                <xsl:apply-templates select="node()"  mode="content"/>
+                <xsl:apply-templates  mode="plugin"/>
+            </xsl:when>
             <xsl:when test="@presentation:class = 'title'">
                 <h1>
                     <xsl:apply-templates select="draw:text-box/text:p"  mode="content"/>
