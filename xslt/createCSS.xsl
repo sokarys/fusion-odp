@@ -23,42 +23,45 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="style:style/style:graphic-properties" mode="style">
+    <xsl:template match="style:graphic-properties" mode="style">
         <xsl:if test="@draw:fill-color">
                 background-color:<xsl:value-of select="@draw:fill-color" />;
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="style:style/style:paragraph-properties" mode="style">
-        <xsl:if test="@fo:text-align">
+    <xsl:template match="style:paragraph-properties" mode="style">
+        <xsl:if test="@fo:text-align !='' ">
                 text-align:<xsl:value-of select="@fo:text-align" />;
         </xsl:if>
-        <xsl:if test="@fo:margin-left">
+        <xsl:if test="@fo:margin-left !='' ">
                 margin-left:<xsl:value-of select="@fo:margin-left" />;
         </xsl:if>
-        <xsl:if test="@fo:margin-right">
+        <xsl:if test="@fo:margin-right !='' ">
                 margin-right:<xsl:value-of select="@fo:margin-right" />;
         </xsl:if>
-        <xsl:if test="@fo:margin-top">
+        <xsl:if test="@fo:margin-top !='' ">
                 margin-top:<xsl:value-of select="@fo:margin-top" />;
         </xsl:if>
-        <xsl:if test="@fo:margin-bottom">
+        <xsl:if test="@fo:margin-bottom !='' ">
                 margin-bottom:<xsl:value-of select="@fo:margin-bottom" />;
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="style:style/style:text-properties" mode="style">
-            <xsl:if test="@fo:color">
+    <xsl:template match="style:text-properties" mode="style">
+            <xsl:if test="@fo:color !='' ">
                 color:<xsl:value-of select="@fo:color" />;
             </xsl:if>
-            <xsl:if test="@fo:font-style">
+            <xsl:if test="@fo:font-style !='' ">
                 font-style:<xsl:value-of select="@fo:font-style" />;
             </xsl:if>
-            <xsl:if test="@fo:font-weight">
+            <xsl:if test="@fo:font-weight !='' ">
                 font-weight:<xsl:value-of select="@fo:font-weight" />;
             </xsl:if>
-            <xsl:if test="@style:text-underline-style">
+            <xsl:if test="@style:text-underline-style !='' ">
                 text-decoration:<xsl:value-of select="@style:text-underline-style" />;
+            </xsl:if>
+            <xsl:if test="@fo:font-family !='' ">
+		font-family:<xsl:value-of select="@fo:font-family"/>;
             </xsl:if>
     </xsl:template>
 

@@ -9,7 +9,7 @@
                 <meta charset="utf-8" />
                 <title> HTML Timing :: Slideshow Engine </title>
 
-               <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/styles.css"/> <!--
+               <!--<link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/styles.css"/>
                 <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/layout.css"/>
                 <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/transitions.css"/>
                 <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/slideshow.css"/>-->
@@ -136,15 +136,16 @@ style:style style:parent-style-name -->
     <xsl:template match="draw:frame"  mode="content">  
             <xsl:choose>
             <xsl:when test="@presentation:class = 'title'">
-                <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
+                <h1>
+                    <xsl:apply-templates select="draw:text-box/text:p"  mode="content"/>
+                </h1>
+            </xsl:when>
+            <xsl:when test="@presentation:class = 'subtitle'">
                 <h2>
-                <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
                     <xsl:apply-templates select="draw:text-box/text:p"  mode="content"/>
                 </h2>
             </xsl:when>
-            <xsl:when test="@presentation:class != 'title'">
-                <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
-                <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
+            <xsl:when test="@presentation:class != 'title' and @presentation:class != 'subtitle'">
                 <xsl:apply-templates select="node()"  mode="content"/>
             </xsl:when>
             </xsl:choose>
