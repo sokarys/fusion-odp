@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"   xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0" xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0" xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:meta="urn:oasis:names:tc:opendocument:xmlns:meta:1.0" xmlns:number="urn:oasis:names:tc:opendocument:xmlns:datastyle:1.0" xmlns:presentation="urn:oasis:names:tc:opendocument:xmlns:presentation:1.0" xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0" xmlns:chart="urn:oasis:names:tc:opendocument:xmlns:chart:1.0" xmlns:dr3d="urn:oasis:names:tc:opendocument:xmlns:dr3d:1.0" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="urn:oasis:names:tc:opendocument:xmlns:form:1.0" xmlns:script="urn:oasis:names:tc:opendocument:xmlns:script:1.0" xmlns:ooo="http://openoffice.org/2004/office" xmlns:ooow="http://openoffice.org/2004/writer" xmlns:oooc="http://openoffice.org/2004/calc" xmlns:dom="http://www.w3.org/2001/xml-events" xmlns:xforms="http://www.w3.org/2002/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:smil="urn:oasis:names:tc:opendocument:xmlns:smil-compatible:1.0" xmlns:anim="urn:oasis:names:tc:opendocument:xmlns:animation:1.0" xmlns:rpt="http://openoffice.org/2005/report" xmlns:of="urn:oasis:names:tc:opendocument:xmlns:of:1.2" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:grddl="http://www.w3.org/2003/g/data-view#" xmlns:officeooo="http://openoffice.org/2009/office" xmlns:tableooo="http://openoffice.org/2009/table" xmlns:field="urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0" xmlns:formx="urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0" office:version="1.2" grddl:transformation="http://docs.oasis-open.org/office/1.2/xslt/odf2rdf.xsl">
 
     <xsl:output method="html" indent="yes"/>
-    
+
     <xsl:template match="office:document-content">
         <html lang="en" >
             <head>
@@ -15,7 +15,7 @@
                 <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/slideshow.css"/>-->
                 <script type="text/javascript" src="./../../timesheets/timesheets.js"></script>
                 <script type="text/javascript" src="./../../timesheets/timesheets-navigation.js"></script>
-                
+
                 <!-- <link rel="stylesheet" type="text/css" href="./../timesheets/demo/style/layout.css"/>
                 <link rel="stylesheet" type="text/css" href="./../timesheets/demo/style/transitions.css"/>
                 <link rel="stylesheet" type="text/css" href="./../timesheets/demo/style/slideshow.css"/>
@@ -38,7 +38,7 @@
                      data-last          = "last.click">
 
                         <xsl:apply-templates select="/office:document-content/office:body/office:presentation/draw:page"  mode="content"/>
-            
+
                         <p class="menu" data-timeaction="none">
                             <button id="first" title="first slide">       |«     </button>
                             <button id="prev"  title="previous slide"> &lt; prev </button>
@@ -74,7 +74,7 @@
         </html>
 
     </xsl:template>
-    
+
     <xsl:template match="/office:document-content/office:body/office:presentation/draw:page"  mode="content">
         <div smil:timeContainer="par" smil:dur="12s">
             <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
@@ -94,7 +94,7 @@
                 <xsl:apply-templates select="node()" mode="content"/>
             </xsl:otherwise>
         </xsl:choose>
-            
+
         </div>
     </xsl:template>
 
@@ -131,7 +131,7 @@
         </xsl:if>
     </xsl:template>
 
-    
+
 <!-- draw:frame draw:style-name
 presentation:notes draw:style-name
 draw:page-thumbnail draw:style-name
@@ -141,14 +141,14 @@ style:style style:parent-style-name -->
          <xsl:attribute name="class"><xsl:value-of select="@presentation:class"/></xsl:attribute>
          <xsl:apply-templates mode="content"/>
     </xsl:template>-->
-    
+
     <xsl:template match="text:span"  mode="content">
             <xsl:attribute name="class"><xsl:value-of select="@text:style-name"/></xsl:attribute>
             <xsl:value-of select="." />
     </xsl:template>
 
 
-    <xsl:template match="draw:frame"  mode="content">  
+    <xsl:template match="draw:frame"  mode="content">
             <xsl:choose>
             <xsl:when test="@presentation:class = 'title'">
                 <h1>
@@ -171,7 +171,7 @@ style:style style:parent-style-name -->
         <xsl:attribute name="src">./document/<xsl:value-of select="@xlink:href"/></xsl:attribute>
         </img>
     </xsl:template>
-    
+
    <xsl:template match="style:style" mode="style">
         .<xsl:value-of select="@style:name"/>{
             <xsl:if test="style:text-properties/@fo:color">
@@ -218,7 +218,7 @@ style:style style:parent-style-name -->
             </xsl:if>
             <!-- draw:fill="solid" draw:fill-color="#ffff00" draw:textarea-horizontal-align="justify" draw:textarea-vertical-align="middle" draw:auto-grow-height="false" fo:padding-top="0.325cm" fo:padding-bottom="0.325cm" fo:padding-left="0.45cm" fo:padding-right="0.45cm"/>-->
         }
-        
+
     </xsl:template>
 
 
@@ -251,7 +251,7 @@ style:style style:parent-style-name -->
       </div>
     </xsl:template>
 
-    
+
     <xsl:template match="draw:custom-shape" mode="shape">
         <!-- <object type="image/svg+xml" class="highlight"> -->
                          <xsl:apply-templates  mode="shape">
@@ -262,7 +262,7 @@ style:style style:parent-style-name -->
                             <xsl:with-param name="class"><xsl:value-of select="@draw:style-name"/> </xsl:with-param>
                          </xsl:apply-templates>
     </xsl:template>
-    
+
     <xsl:template match="draw:custom-shape/draw:enhanced-geometry[@draw:type='ellipse']" mode="shape">
         <xsl:param name="x"/>
         <xsl:param name="y"/>
@@ -272,13 +272,13 @@ style:style style:parent-style-name -->
          <ellipse>
             <xsl:attribute name="class"><xsl:value-of select="$class"/></xsl:attribute>
             <xsl:attribute name="cx"><xsl:value-of select="(($x +( $width div 2) ) div 2)"/>cm</xsl:attribute>
-                            <xsl:attribute name="cy"><xsl:value-of select="(($y +( $height div 2) ) div 2)"/>cm</xsl:attribute>
-                            <xsl:attribute name="rx"><xsl:value-of select="((( $width div 2.5) ) )"/>cm</xsl:attribute>
-                            <xsl:attribute name="ry"><xsl:value-of select="(( $height div 2.5) )"/>cm</xsl:attribute>
+                            <xsl:attribute name="cy"><xsl:value-of select="(($y +( $height div 2) ) div 4)"/>cm</xsl:attribute>
+                            <xsl:attribute name="rx"><xsl:value-of select="((( $width div 4) ) )"/>cm</xsl:attribute>
+                            <xsl:attribute name="ry"><xsl:value-of select="(( $height div 4)  )"/>cm</xsl:attribute>
          </ellipse>
     </xsl:template>
 
-    
+
    <xsl:template  match="node()|@*" mode="style">
        <xsl:apply-templates select="node()|@*"  mode="style"/>
    </xsl:template>
