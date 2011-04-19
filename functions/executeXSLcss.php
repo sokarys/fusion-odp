@@ -6,7 +6,7 @@ function executeXSLcss($name){
     echo " EXECUTEXSLCSS<br/>";
     echo "***********************************************<br/>";
     echo "<pre>";
-    $urlSource = "./../document/resultat/style.xml";
+    $urlSource = "./../document/resultat/styles.xml";
     $urlXSL = "./../xslt/createCSS.xsl";
     $urlDirTarget = "./../document/final/";
     $urlTarget = $urlDirTarget.$name;
