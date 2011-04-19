@@ -157,6 +157,10 @@ img{
 	margin:					0px !important;
 }
 
+#ui-sortable{
+	margin:					0px;
+}
+
 .ui-sortable img, #ul_modele img{
 	padding-right:			10px;	
 }
