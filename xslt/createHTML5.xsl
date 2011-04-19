@@ -26,7 +26,7 @@
                     <xsl:apply-templates mode="style"/>
                 </style>
             </head>
-            <body class="none">
+            <body class="crossfade">
                 <div id="demo">
                     <div id="slideshow"
                      data-timecontainer = "seq"
@@ -80,14 +80,14 @@
             <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
             <xsl:attribute name="id">slide<xsl:value-of select="position() div 2"/></xsl:attribute>
 
-<xsl:choose>
+        <xsl:choose>
           <xsl:when test="draw:custom-shape">
               <xsl:apply-templates select="node()"  mode="content"/>
                 <svg version="1.1" viewBox="0 0 500 340" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink = "http://www.w3.org/1999/xlink" xmlns:smil  = "http://www.w3.org/ns/SMIL">
                   <title> SVG Timing </title>
-                    <g id="slideshow" smil:timeContainer = "seq" smil:timeAction    = "intrinsic"    smil:repeatCount   = "indefinite"    smil:next          = "click">
+                    
                            <xsl:apply-templates mode="shape"/>
-                    </g>
+                    
                     </svg>
             </xsl:when>
           <xsl:otherwise>
@@ -264,13 +264,16 @@ style:style style:parent-style-name -->
         <xsl:param name="width"/>
         <xsl:param name="height"/>
         <xsl:param name="class"/>
+        <g id="slideshow" smil:timeContainer = "seq" smil:timeAction="intrinsic"    smil:repeatCount="indefinite"    smil:next="click">
          <ellipse>
             <xsl:attribute name="class"><xsl:value-of select="$class"/></xsl:attribute>
-            <xsl:attribute name="cx"><xsl:value-of select="(($x +( $width div 2) ) div 2)"/>cm</xsl:attribute>
-                            <xsl:attribute name="cy"><xsl:value-of select="(($y +( $height div 2) ) div 4)"/>cm</xsl:attribute>
-                            <xsl:attribute name="rx"><xsl:value-of select="((( $width div 5) ) )"/>cm</xsl:attribute>
-                            <xsl:attribute name="ry"><xsl:value-of select="(( $height div 5)  )"/>cm</xsl:attribute>
+            <xsl:attribute name="cx">
+                <xsl:value-of select="(($x +( $width div 2) ) div 2)"/>cm</xsl:attribute>
+                <xsl:attribute name="cy"><xsl:value-of select="(($y +( $height div 2) ) div 4)"/>cm</xsl:attribute>
+                <xsl:attribute name="rx"><xsl:value-of select="((( $width div 5) ) )"/>cm</xsl:attribute>
+                <xsl:attribute name="ry"><xsl:value-of select="(( $height div 5)  )"/>cm</xsl:attribute>
          </ellipse>
+         </g>
     </xsl:template>
 
 
