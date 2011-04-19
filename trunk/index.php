@@ -139,9 +139,9 @@
                                   'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
                              $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
                              if(move_uploaded_file($_FILES['fichier']['tmp_name'][0], $dossier . $fichier)){ //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
-                                  echo 'Upload effectué avec succès !';
+                                  echo '<img src="images/OK.png" width="24" height="24"/>'.'&nbsp;'.'Upload effectué avec succès !';
                              }else{ //Sinon (la fonction renvoie FALSE).
-                                  echo 'Echec de l\'upload !';
+                                  echo '<img src="images/warning.png" width="24" height="24"/>'.'Echec de l\'upload !';
                              }
                         }else{
                              echo $erreur;
@@ -162,9 +162,9 @@
                                   'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
                              $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
                              if(move_uploaded_file($_FILES['modele']['tmp_name'][0], $dossier . $fichier)){ //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
-                                  echo 'Upload effectué avec succès !';
+                                  echo '<img src="images/OK.png" width="24" height="24"/>'.'&nbsp;'.'Upload effectué avec succès !';
                              }else{ //Sinon (la fonction renvoie FALSE).
-                                  echo 'Echec de l\'upload !';
+                                  echo '<img src="images/warning.png" width="24" height="24"/>'.'&nbsp;'.'Echec de l\'upload !';
                              }
                         }else{
                              echo '<img src="images/warning.png" width="24" height="24"/>'.'&nbsp;'.$erreur;
