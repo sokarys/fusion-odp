@@ -30,7 +30,7 @@
 include('./functions/htmlExist.php');
 include('./functions/deleteResultat.php');
 if(isset($_GET['resultat'])){
-    
+    require_once('./document/final/'.$_GET['resultat'].'.css');
     require_once('./document/final/'.$_GET['resultat'].'.html');
 }
 ?>
