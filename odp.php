@@ -17,7 +17,7 @@
     <script type="text/javascript" src="./timesheets/timesheets-navigation.js"></script>
     <script type="text/javascript" src="./timesheets/timesheets-controls.js"></script>
     <script>
-                function deleteFinal(fichier){
+                function deleteFinal(fichier){ // permet de supprimer un fichier du répertoire final
                     
                 $.ajax({
                     type:"GET",
@@ -46,7 +46,7 @@
 			<?php
                 include('./functions/htmlExist.php');
                 include('./functions/deleteResultat.php');
-                if(isset($_GET['resultat'])){
+                if(isset($_GET['resultat'])){ // si la page possede comme argument un nom de presentation il affiche sa version html
                     ?>
                     <div class="presentationHTML">
 	                    <link rel=stylesheet type="text/css" href="<?php echo('./document/final/'.$_GET['resultat'].'.css');?>">
@@ -63,6 +63,7 @@
                     <div class="ui-widget-header-middle">
                         <ul id="ui-sortable">
                         <?php
+                            // liste les présentation généré avec un lien pour les télécharger et affiche une icone si la présentation possède une version html5
                              $dirname = './document/final';
                              $dir = opendir($dirname);
                              $count=0;
@@ -81,7 +82,9 @@
                                        echo '<li class="ui-state-default"><img src="images/btnSupprimer.png" width="30" height="30" onclick="javascript:deleteFinal(\''.$file.'\')"  style="cursor:pointer;"/>';
                                        if(htmlExist(strstr($file, '.', true))){
                                           echo '<a href="odp.php?resultat='.strstr($file, '.', true).'"><img src="./jquery/css/HTML5.png" width="30" height="30" style="border:none;width:32px;padding-right:20px;"/></a>';
-                                       }           
+                                       }{
+                                        echo '<span style="padding-left:50px;"></span>';
+                                        }
                                        echo '<a href="'.$dirname.'/'.$file.'">'.$file.'</a><input type="hidden" name="modele[]" value="'.$file.$courant.'"/></li>';
                                        $courant++;
                         
@@ -89,7 +92,9 @@
                                        echo '<li class="ui-state-default"><img src="images/btnSupprimer.png" width="30" height="30" onclick="javascript:deleteFinal(\''.$file.'\')" style="cursor:pointer;"/>';
                                        if(htmlExist(strstr($file, '.', true))){
                                           echo '<a href="odp.php?resultat='.strstr($file, '.', true).'"><img src="./jquery/css/HTML5.png" width="30" height="30" style="border:none;width:32px;padding-right:20px;"/></a>';
-                                       }
+                                       }else{
+                                        echo '<span style="padding-left:50px;"></span>';
+                                        }
                                         echo '<a href="'.$dirname.'/'.$file.'">'.$file.'</a><input type="hidden" name="modele[]" value="'.$file.'"/><img src="images/new.png" width="30" height="30" style="padding-left:20;"></li>';
                                    }
                                 }
