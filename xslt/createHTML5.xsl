@@ -8,20 +8,8 @@
             <head>
                 <meta charset="utf-8" />
                 <title> HTML Timing :: Slideshow Engine </title>
-
-               <!--<link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/styles.css"/>
-                <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/layout.css"/>
-                <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/transitions.css"/>
-                <link rel="stylesheet" type="text/css" href="./../../timesheets/demo/style/slideshow.css"/>-->
                 <script type="text/javascript" src="./../../timesheets/timesheets.js"></script>
                 <script type="text/javascript" src="./../../timesheets/timesheets-navigation.js"></script>
-
-                <!-- <link rel="stylesheet" type="text/css" href="./../timesheets/demo/style/layout.css"/>
-                <link rel="stylesheet" type="text/css" href="./../timesheets/demo/style/transitions.css"/>
-                <link rel="stylesheet" type="text/css" href="./../timesheets/demo/style/slideshow.css"/>
-                <script type="text/javascript" src="./../timesheets/timesheets.js"></script>
-                <script type="text/javascript" src="./../timesheets/timesheets-navigation.js"></script>
-                -->
                 <style>
                     <xsl:apply-templates mode="style"/>
                 </style>
@@ -77,9 +65,7 @@
 
     <xsl:template match="/office:document-content/office:body/office:presentation/draw:page"  mode="content">
         <div smil:timeContainer="par" smil:dur="12s">
-            <!--<xsl:attribute name="class"><xsl:value-of select="@presentation:style-name"/></xsl:attribute>-->
             <xsl:attribute name="id">slide<xsl:value-of select="position() div 2"/></xsl:attribute>
-
         <xsl:choose>
           <xsl:when test="draw:custom-shape">
               <xsl:apply-templates select="node()"  mode="content"/>
@@ -223,32 +209,9 @@ style:style style:parent-style-name -->
     </xsl:template>
 
     <xsl:template match="draw:plugin" mode="plugin">
-     <div id="mediaController">
-        <div id="timeline">
-          <div id="mediaStart" class="play">
-            <button class="pause">
-              <img src="images/media-pause.png" alt="pause" />
-            </button>
-            <button class="play">
-              <img src="images/media-play.png" alt="play" />
-            </button>
-          </div>
-          <div id="timeCursor"><span></span></div>
-          <div id="timeValue">
-            <span>0:00</span>
-          </div>
-          <br style="clear: both; line-height: 1px;" />       </div>
-
-        <audio id="audioPlayer" controls="" autoplay="" preload="auto">
-          <source type="audio/mp3">
+          <embed autostart="true" loop="false" hidden="true">
             <xsl:attribute name="src"><xsl:value-of select="@xlink:href"/></xsl:attribute>
-          </source>
-          This page requires <strong>&lt;audio&gt;</strong> support:<br />
-          best viewed with Firefox 3.5+, Safari 4+, Chrome 5+, Opera 10.60+ or IE9.<br />
-           <br />
-          Internet Explorer users, please enable Flash or Silverlight.
-        </audio>
-      </div>
+          </embed>
     </xsl:template>
 
 
