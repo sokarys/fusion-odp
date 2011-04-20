@@ -15,14 +15,14 @@
     </style>
 	<script>
 	$(function() {
-		$( "#sortable" ).sortable({
+		$( "#sortable" ).sortable({ //drag and drop liste de fichier
 			placeholder: "ui-state-highlight"
 		});
 		$( "#sortable" ).disableSelection();
 	
 		$( "#dialog:ui-dialog" ).dialog( "destroy" );
 	
-		$( "#dialog-confirm" ).dialog({
+		$( "#dialog-confirm" ).dialog({ //pop up e dialogue
             autoOpen: false,
 			resizable: false,
 			height:140,
@@ -42,7 +42,7 @@
 				}
 			}
 		});
-         $( "#dialog-message, #dialog-message2" ).dialog({
+         $( "#dialog-message, #dialog-message2" ).dialog({ // popup de dialog
             autoOpen: false,
 			resizable: false,
 			modal: true,
@@ -65,7 +65,7 @@
                 $("#dialog-confirm").dialog('open');
 
         }
-        function deleteOdp(name){
+        function deleteOdp(name){ //supprimer le model
             $.ajax({
                 type:"GET",
                 url:"./functions/deleteODP.php?model="+name,
@@ -74,7 +74,7 @@
                 }
             })
         }
-        function deleteOdpfichier(fichier){
+        function deleteOdpfichier(fichier){ //supprimer une présentation
             $.ajax({
                 type:"GET",
                 url:"./functions/deleteODP.php?fichier="+fichier,
@@ -183,7 +183,7 @@
                             <?php
                                  $dirname = './document/temp_model';
                                  $dir = opendir($dirname);
-                                 while($file = readdir($dir)) {
+                                 while($file = readdir($dir)) { //liste le modele courrant utilisé
                                     if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file)){
                                         echo '<li class="ui-state-default"><div class="odpElement"><img src="images/btnSupprimer.png" width="30" height="30" onclick="javascript:deleteOdp(\''.$file.'\')" style="cursor:pointer;"/>'.$file.'<input type="hidden" name="modele[]" value="'.$file.'"/></div></li>';
                                     }
@@ -202,7 +202,7 @@
                             <?php
                                  $dirname = './document/temp';
                                  $dir = opendir($dirname);
-                                 while($file = readdir($dir)) {
+                                 while($file = readdir($dir)) { //liste les présentation à fusionné
                                     if($file != ".svn" && $file != '.' && $file != '..' && !is_dir($dirname.$file)){
                                         echo '<li class="ui-state-default"><div class="odpElement"><input type="hidden" name="document[]" value="'.$file.'"/><img src="images/btnSupprimer.png" width="30" height="30" onclick="javascript:deleteOdpfichier(\''.$file.'\')" style="cursor:pointer;"/>'.$file.'</div></li>';
                                     }
