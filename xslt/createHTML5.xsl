@@ -78,10 +78,9 @@
                     </svg>
             </xsl:when>
           <xsl:otherwise>
-                <xsl:apply-templates select="node()" mode="content"/>
+                <xsl:apply-templates mode="content"/>
             </xsl:otherwise>
         </xsl:choose>
-
         </div>
     </xsl:template>
 
@@ -91,7 +90,7 @@
                 <xsl:apply-templates select="node()" mode="content"/>
             </xsl:if>
             <xsl:if test="count(text:span) = 0">
-                <xsl:apply-templates select="."/>
+                <xsl:apply-templates select="." />
             </xsl:if>
         </p>
     </xsl:template>
@@ -135,25 +134,31 @@ style:style style:parent-style-name -->
     </xsl:template>
 
 
-    <xsl:template match="draw:frame"  mode="content">
-            <xsl:choose>
-            <xsl:when test="draw:plugin">
-                <xsl:apply-templates select="node()"  mode="content"/>
-                <xsl:apply-templates  mode="plugin"/>
-            </xsl:when>
+<!--<xsl:template match="draw:page/draw:frame[@presentation:class = 'title']" mode="content">
+    <h1>
+        <xsl:apply-templates select="draw:text-box/text:p"  mode="content"/>
+    </h1>
+    <xsl:apply-templates select="node()"  mode="content"/>
+</xsl:template>
+
+<xsl:template match="draw:page/draw:frame[@presentation:class = 'subtitle']" mode="content">
+    <h2>
+        <xsl:apply-templates select="draw:text-box/text:p"  mode="content"/>
+    </h2>
+    <xsl:apply-templates select="node()"  mode="content"/>
+</xsl:template>
+
+-->
+    <xsl:template match="draw:frame"  mode="content">      
+             <xsl:choose>
             <xsl:when test="@presentation:class = 'title'">
                 <h1>
                     <xsl:apply-templates select="draw:text-box/text:p"  mode="content"/>
                 </h1>
             </xsl:when>
-            <xsl:when test="@presentation:class = 'subtitle'">
-                <h2>
-                    <xsl:apply-templates select="draw:text-box/text:p"  mode="content"/>
-                </h2>
-            </xsl:when>
-            <xsl:otherwise>
+            <xsl:when test="@presentation:class != 'title'">
                 <xsl:apply-templates select="node()"  mode="content"/>
-            </xsl:otherwise>
+            </xsl:when>
             </xsl:choose>
     </xsl:template>
 
@@ -209,7 +214,7 @@ style:style style:parent-style-name -->
     </xsl:template>
 
     <xsl:template match="draw:plugin" mode="plugin">
-          <embed autostart="true" loop="false" hidden="true">
+          <embed WIDTH="120" HEIGHT="40" AUTOSTART="TRUE" LOOP="TRUE">
             <xsl:attribute name="src"><xsl:value-of select="@xlink:href"/></xsl:attribute>
           </embed>
     </xsl:template>
