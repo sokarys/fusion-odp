@@ -213,7 +213,7 @@ style:style style:parent-style-name -->
 
     </xsl:template>
 
-    <xsl:template match="draw:plugin" mode="content">
+    <xsl:template match="draw:page/draw:frame/draw:plugin/*" mode="content">
           <embed WIDTH="120" HEIGHT="40" AUTOSTART="TRUE" LOOP="TRUE">
             <xsl:attribute name="src"><xsl:value-of select="@xlink:href"/></xsl:attribute>
           </embed>
