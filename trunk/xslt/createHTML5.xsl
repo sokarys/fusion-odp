@@ -149,8 +149,11 @@ style:style style:parent-style-name -->
 </xsl:template>
 
 -->
-    <xsl:template match="draw:frame"  mode="content">      
-             <xsl:choose>
+    <xsl:template match="draw:frame"  mode="content">
+            <xsl:if test="draw:plugin">
+                <xsl:apply-templates select="draw:plugin" mode="content"/>
+            </xsl:if>
+            <xsl:choose>
             <xsl:when test="@presentation:class = 'title'">
                 <h1>
                     <xsl:apply-templates select="draw:text-box/text:p"  mode="content"/>
@@ -213,7 +216,7 @@ style:style style:parent-style-name -->
 
     </xsl:template>
 
-    <xsl:template match="draw:page/draw:frame/draw:plugin/*" mode="content">
+    <xsl:template match="draw:plugin" mode="content">
           <embed WIDTH="120" HEIGHT="40" AUTOSTART="TRUE" LOOP="TRUE">
             <xsl:attribute name="src"><xsl:value-of select="@xlink:href"/></xsl:attribute>
           </embed>
