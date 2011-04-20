@@ -10,6 +10,7 @@ include('./../functions/picturesCopy.php');
 include('./../functions/deleteTempFiles.php');
 
 if(isset($_POST)){
+     //crée le fichier list.xml
     $dom = new DomDocument('1.0', 'utf-8');
     $node=$dom->createElement("list");
     $dom->appendChild($node);
@@ -21,7 +22,8 @@ if(isset($_POST)){
         $node->appendChild($nodeDoc);
     }
     $dom->save('./../xslt/list.xml');
-    chmod('./../xslt/list.xml',0777);
+    chmod('./../xslt/list.xml',0777); //donne les droits au fichier pour qu'il soit exploitable
+
 
     //renamme et deplacement de model
         $dirname = './../document/temp_model/';
@@ -34,19 +36,19 @@ if(isset($_POST)){
            
             }
          } 
-        copy ($dirname."model.odp","./../document/temp/model.odp");
-        unlink($dirname."model.odp");
-        unzip();
-        recursiveCopy('./../xslt/tmp/model', './../document/resultat');
-        picturesCopy();
-        executeXSLContenu();
-        $finalName = "resulat".time();
-        executeXSLcss($finalName.".html");
-        rename($dirnameFinal.$finalName.".html",$dirnameFinal.$finalName.".css");
-        executeXSLhtml($finalName.".html");        
-        zip($finalName.".odp");
-        deleteTempFiles();
-        header('Location: ../odp.php?resultat='.$finalName);
+        copy ($dirname."model.odp","./../document/temp/model.odp"); //deplace le model et le renomme
+        unlink($dirname."model.odp");//supprime le model temporaire
+        unzip(); // dezip les fichier odp
+        recursiveCopy('./../xslt/tmp/model', './../document/resultat');  //copie les fichier dans le repertoire de traitement
+        picturesCopy();//copie les images des présentations
+        executeXSLContenu();//execute le xslt de fusion
+        $finalName = "resulat".time(); //génére un nom unique a l'odp final
+        executeXSLcss($finalName.".html"); //execute le xslt qui génére le css
+        rename($dirnameFinal.$finalName.".html",$dirnameFinal.$finalName.".css"); //change l'extension du fichier générer en css
+        executeXSLhtml($finalName.".html");  //execute le xslt qui génére le html
+        zip($finalName.".odp"); // compresse la présentation généré
+        deleteTempFiles();  // supprime les fichiers temporaires
+        header('Location: ../odp.php?resultat='.$finalName); //redirige sur la page de résultat
 }else{
    echo("Cette page n'est pas accessible !!!");
 }
